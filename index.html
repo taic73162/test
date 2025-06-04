@@ -17,6 +17,28 @@ button { padding: 6px 12px; margin: 0 4px; font-size: 14px; }
 .items { display: none; padding: 0 20px 10px; }
 .items table { width: 100%; border-collapse: collapse; background: white; }
 .items th, .items td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+
+
+.items {
+  overflow-x: auto;
+}
+
+.items table {
+  min-width: 700px;
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  table-layout: fixed;
+}
+
+.items th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+  font-weight: bold;
+}
+
 </style>
 </head>
 <body>
