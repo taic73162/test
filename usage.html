@@ -1,0 +1,3188 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<title>其他地區產品目錄（依用途）</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
+body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; }
+#fixed-header { position: sticky; top: 0; background: white; padding: 10px; border-bottom: 1px solid #ccc; z-index: 1000; text-align: center; }
+h1 { margin: 0; font-size: 24px; }
+input[type="text"] { padding: 8px; width: 90%; max-width: 400px; font-size: 16px; }
+button { padding: 6px 12px; margin: 0 4px; font-size: 14px; }
+.note { color: red; font-weight: bold; margin: 10px 0; }
+.usage-header, .brand-header { cursor: pointer; padding: 10px; background: #ddd; margin-top: 10px; font-weight: bold; display: flex; align-items: center; }
+.brand-header { background: #eee; margin-left: 20px; }
+.toggle-symbol { margin-right: 10px; }
+.items { display: none; padding: 0 20px 10px; }
+.items table { width: 100%; border-collapse: collapse; background: white; }
+.items th, .items td { border: 1px solid #ccc; padding: 6px; text-align: center; }
+
+
+.table-outer {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.table-inner {
+  max-height: 400px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.table-inner table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 800px;
+  table-layout: fixed;
+}
+
+.table-inner th, .table-inner td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  white-space: nowrap;
+  text-align: center;
+  background: white;
+}
+
+.table-inner thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.table-inner th:first-child,
+.table-inner td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.table-inner thead th:first-child {
+  z-index: 4;
+}
+
+
+.table-inner th:first-child,
+.table-inner td:first-child {
+  min-width: 200px;
+  width: 200px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: white;
+  text-align: left;
+  padding-left: 8px;
+}
+
+.table-inner thead th:first-child {
+  z-index: 4;
+}
+
+
+.table-inner th:first-child,
+.table-inner td:first-child {
+  min-width: 250px;
+  width: 250px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: white;
+  text-align: left;
+  padding-left: 8px;
+}
+
+.table-inner thead th:first-child {
+  z-index: 4;
+}
+
+
+.table-inner th:first-child,
+.table-inner td:first-child {
+  min-width: 150px;
+  width: 150px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: white;
+  text-align: left;
+  padding-left: 8px;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.table-inner thead th:first-child {
+  z-index: 4;
+}
+</style>
+</head>
+<body>
+<div id="fixed-header">
+<div class="search-bar">
+<input id="searchInput" onkeyup="filterUsage()" placeholder="輸入關鍵字搜尋..." type="text"/>
+</div>
+<p class="note">品名中有®者為藥品，僅能由貨運寄送，業務原則上無法運送</p>
+<div>
+<button onclick="expandAll()">展開全部</button>
+<button onclick="collapseAll()">收合全部</button>
+</div>
+</div>
+<div class="usage-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span>OTC藥品
+    </div>
+<div class="brands-container" style="display:none;">
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1rGZIPqAgHTIaV-pAJOmKwyFamyMwTMDV" target="_blank">清涼劑</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>白花油 #1</td>
+<td>20ml</td>
+<td>240.0</td>
+<td>250.0</td>
+<td>290</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花油 #2</td>
+<td>10ml</td>
+<td>154.0</td>
+<td>160.0</td>
+<td>190</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花油 #3</td>
+<td>5ml</td>
+<td>89.0</td>
+<td>92.7</td>
+<td>110</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花油 XL</td>
+<td>50ml</td>
+<td>432.0</td>
+<td>450.0</td>
+<td>540</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花膏 15g</td>
+<td>15g</td>
+<td>70.0</td>
+<td>72.8</td>
+<td>95</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花膏 75g</td>
+<td>75g</td>
+<td>270.0</td>
+<td>280.0</td>
+<td>400</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>白花油甦醒凝露-佛手柑</td>
+<td>15ml</td>
+<td>145.0</td>
+<td>151.0</td>
+<td>200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>白花油甦醒凝露-甜心萊姆</td>
+<td>15ml</td>
+<td>145.0</td>
+<td>151.0</td>
+<td>180</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>白花油甦醒凝露-薄荷菁蒂</td>
+<td>15ml</td>
+<td>145.0</td>
+<td>151.0</td>
+<td>180</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>白花油甦醒凝露-山茶花</td>
+<td>15ml</td>
+<td>145.0</td>
+<td>151.0</td>
+<td>180</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>®鷹標風油精 12ml</td>
+<td>12ml</td>
+<td>105.6</td>
+<td>110.0</td>
+<td>139</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®鷹標風油精 24ml</td>
+<td>24ml</td>
+<td>143.0</td>
+<td>149.0</td>
+<td>179</td>
+<td>24+1</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>鷹標提神舒醒滾珠瓶-大麥薄荷</td>
+<td>8ml</td>
+<td>84.0</td>
+<td>87.5</td>
+<td>109</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>鷹標提神舒醒滾珠瓶-薄荷萊姆</td>
+<td>8ml</td>
+<td>84.0</td>
+<td>87.5</td>
+<td>109</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>鷹標提神舒醒滾珠瓶-薰衣草</td>
+<td>8ml</td>
+<td>84.0</td>
+<td>87.5</td>
+<td>109</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®五鶴標薄荷棒-特製</td>
+<td>3.8g</td>
+<td>31.25</td>
+<td>32.5</td>
+<td>45</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®五鶴標薄荷棒-最大</td>
+<td>14.5g</td>
+<td>76.66</td>
+<td>80.0</td>
+<td>100</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1eOiGKi03SwiXIrUtBm456KC6ZiFn67VR" target="_blank">感冒用藥</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>®舒立效口含錠-原味</td>
+<td>24粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>150</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®舒立效口含錠-酷涼薄荷</td>
+<td>16粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>150</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®舒立效口含錠-無糖檸檬味</td>
+<td>16粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>150</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®舒立效口含錠-柑橘維他命C</td>
+<td>24粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>150</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®舒立效口含錠-舒緩蜂蜜檸檬</td>
+<td>24粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>150</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®舒立效口含錠-咳消配方</td>
+<td>24粒</td>
+<td>135.0</td>
+<td>140.5</td>
+<td>209</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®腦新散</td>
+<td>10包</td>
+<td>82.0</td>
+<td>85.5</td>
+<td>110</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®易而善加強感冒液</td>
+<td>60ml</td>
+<td>14.67</td>
+<td>15.28</td>
+<td>25</td>
+<td>一次出180支</td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1SHt5NAsdAjxLA8amAQCmW9lUuBL2h3LP" target="_blank">消化道用藥</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>®清立漂膜衣錠12毫克</td>
+<td>20顆</td>
+<td>67.5</td>
+<td>70.3</td>
+<td>135</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®大捷膠囊75毫克</td>
+<td>15顆</td>
+<td>125.0</td>
+<td>130.2</td>
+<td>249</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®蓋抹滅清毒膠囊200毫克 15顆</td>
+<td>15顆</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>499</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®蓋抹滅清毒膠囊200毫克 30顆</td>
+<td>30顆</td>
+<td>470.0</td>
+<td>490.0</td>
+<td>939</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®嘉胃斯康懸浮液</td>
+<td>200ml</td>
+<td>315.0</td>
+<td>328.0</td>
+<td>399</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®複方毒掃丸</td>
+<td>540粒</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>360</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®暮帝納斯腸病整腸劑 120片</td>
+<td>120片</td>
+<td>215.0</td>
+<td>224.0</td>
+<td>283</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>®暮帝納斯腸病整腸劑 1000片</td>
+<td>1000片</td>
+<td>940.0</td>
+<td>980.0</td>
+<td>1180</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1vqHFeKBT0gKIfLZlqulSs-Gh7BxP7Clu" target="_blank">中成藥</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>阿桐伯加味明目地黃丸 270丸</td>
+<td>270丸</td>
+<td>1200.0</td>
+<td>1250.0</td>
+<td>1680</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>阿桐伯加味明目地黃丸 600丸</td>
+<td>600丸</td>
+<td>2000.0</td>
+<td>2080.0</td>
+<td>2650</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>阿桐伯加味明目地黃丸 960丸</td>
+<td>960丸</td>
+<td>2800.0</td>
+<td>2916.0</td>
+<td>3500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>黑矸標顧肺散 26g</td>
+<td>26g</td>
+<td>100.0</td>
+<td>100.0</td>
+<td>165</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>黑矸標顧肺散 68g</td>
+<td>68g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>330</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>黑矸標普濟丸</td>
+<td>16粒 * 10包</td>
+<td>230.0</td>
+<td>240.0</td>
+<td>280</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1mJ2dQB-TZUfnSnk0gV5J8pyK2Ewo1X1J" target="_blank">外用止痛</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>®小林清新安摩樂彎彎瓶(紅) 46ml</td>
+<td>46ml</td>
+<td>136.0</td>
+<td>141.0</td>
+<td>200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®小林清新安摩樂彎彎瓶(紅) 80ml</td>
+<td>80ml</td>
+<td>216.0</td>
+<td>225.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®小林清新安摩樂外用液劑(藍) 82ml</td>
+<td>82ml</td>
+<td>216.0</td>
+<td>225.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>小林安摩樂熱敷貼片-肩頸</td>
+<td>2枚</td>
+<td>72.0</td>
+<td>75.0</td>
+<td>120</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>小林安摩樂熱敷貼片-腰背</td>
+<td>2枚</td>
+<td>72.0</td>
+<td>75.0</td>
+<td>120</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1hQkT6gCHQJecfWBWw0_lx28dUzz8haXz" target="_blank">外用去瘀</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>®喜療瘀舒效靜脈炎乳膏</td>
+<td>40g</td>
+<td>680.0</td>
+<td>708.0</td>
+<td>850</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>  
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1rGU1W3SAw8GOGaCIFx62lPpjjD_GvquE" target="_blank">外用止癢</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>®金冠鎮癢消炎液 20ml</td>
+<td>20ml</td>
+<td>100.0</td>
+<td>104.0</td>
+<td>130</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®金冠鎮癢消炎液 55ml</td>
+<td>55ml</td>
+<td>169.92</td>
+<td>177.0</td>
+<td>250</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®金冠消炎止癢劑溫和清涼型 50ml</td>
+<td>50ml</td>
+<td>124.8</td>
+<td>130.0</td>
+<td>180</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div></div>
+<div class="usage-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span>醫療器材
+    </div>
+<div class="brands-container" style="display:none;">
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1o6LFsXoIwxCJZmuZRQ5ZbSmV2vFSoSOl" target="_blank">護具</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>日華軀幹裝具-長護腰（黑色） S/M</td>
+<td>10吋/26-32吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰（黑色） L/XL</td>
+<td>10吋/33-41吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰（黑色） XXL</td>
+<td>10吋/ 42-48吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-短護腰 S/M</td>
+<td>6.5吋/26-32吋</td>
+<td>700.0</td>
+<td>700.0</td>
+<td>1100</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-短護腰 L/XL</td>
+<td>6.5吋/33-41吋</td>
+<td>700.0</td>
+<td>700.0</td>
+<td>1100</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-短護腰 XXL</td>
+<td>6.5吋/42-48吋</td>
+<td>700.0</td>
+<td>700.0</td>
+<td>1100</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-拉繩護腰 S/M</td>
+<td>8吋/26-32吋</td>
+<td>1400.0</td>
+<td>1400.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-拉繩護腰 L/XL</td>
+<td>8吋/33-41吋</td>
+<td>1400.0</td>
+<td>1400.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-拉繩護腰 XXL</td>
+<td>8吋/42-48吋</td>
+<td>1400.0</td>
+<td>1400.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰2.0 S/M</td>
+<td>10吋/22-33吋</td>
+<td>1320.0</td>
+<td>1320.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰2.0 L/XL</td>
+<td>10吋/32-43吋</td>
+<td>1320.0</td>
+<td>1320.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰2.0 XXL</td>
+<td>10吋/42-48吋</td>
+<td>1320.0</td>
+<td>1320.0</td>
+<td>2200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰（膚色） S/M</td>
+<td>9.5吋/22-30吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰（膚色） L/XL</td>
+<td>9.5吋/28-36吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華軀幹裝具-長護腰（膚色） XXL</td>
+<td>9.5吋/35-45吋</td>
+<td>1120.0</td>
+<td>1120.0</td>
+<td>1800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護膝 S</td>
+<td>28-31cm</td>
+<td>315.0</td>
+<td>315.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護膝 M</td>
+<td>31-35cm</td>
+<td>315.0</td>
+<td>315.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護膝 L</td>
+<td>35-39cm</td>
+<td>315.0</td>
+<td>315.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護膝 XL</td>
+<td>39-45cm</td>
+<td>315.0</td>
+<td>315.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護膝 XXL</td>
+<td>45-52cm</td>
+<td>315.0</td>
+<td>315.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護肘 S</td>
+<td>18-22cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護肘 M</td>
+<td>22-26cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護肘 L</td>
+<td>26-30cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護肘 XL</td>
+<td>30-34cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護踝 S</td>
+<td>18-20cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護踝 M</td>
+<td>20-22cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護踝 L</td>
+<td>22-24cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護踝 XL</td>
+<td>24-26cm</td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護腕 S</td>
+<td>2入/12-14cm</td>
+<td>175.0</td>
+<td>175.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護腕 M</td>
+<td>2入/14-16cm</td>
+<td>175.0</td>
+<td>175.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護腕 L</td>
+<td>2入/16-18cm</td>
+<td>175.0</td>
+<td>175.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-護腕 XL</td>
+<td>2入/18-20cm</td>
+<td>175.0</td>
+<td>175.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式長護膝</td>
+<td></td>
+<td>525.0</td>
+<td>525.0</td>
+<td>800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式短護膝</td>
+<td></td>
+<td>525.0</td>
+<td>525.0</td>
+<td>800</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式護肘</td>
+<td></td>
+<td>245.0</td>
+<td>245.0</td>
+<td>400</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式護踝</td>
+<td></td>
+<td>245.0</td>
+<td>245.0</td>
+<td>400</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式加緊護腕</td>
+<td></td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式套指手腕</td>
+<td></td>
+<td>210.0</td>
+<td>210.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式板機指護腕 S/M</td>
+<td></td>
+<td>420.0</td>
+<td>420.0</td>
+<td>700</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華肢體裝具-自黏式板機指護腕 L/XL</td>
+<td></td>
+<td>420.0</td>
+<td>420.0</td>
+<td>700</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華矽膠彈性肌貼-黑</td>
+<td>5cm x 5m</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華矽膠彈性肌貼-膚</td>
+<td>5cm x 5m</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華矽膠彈性肌貼-藍</td>
+<td>5cm x 5m</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華矽膠彈性肌貼-粉紅</td>
+<td>5cm x 5m</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>350</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1Ul14qTDK9RTs_-bC3L2cMhtYeXkuyHV6" target="_blank">退燒用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>小林退熱貼-兒童用</td>
+<td>6入</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>160</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>小林退熱貼-成人用</td>
+<td>6入</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>160</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>小林退熱貼-嬰兒用</td>
+<td>6入</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>160</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1qUsVUDjgfBmpWhK9wcXdtOfb6Hm9IpwL" target="_blank">急救用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>日華急救繃-防水透氣（大）6入</td>
+<td>6入/4 x 6.5 cm</td>
+<td>25.0</td>
+<td>25.0</td>
+<td>50</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華急救繃-防水透氣（小）10入</td>
+<td>10入/2.5 x 6.5 cm</td>
+<td>25.0</td>
+<td>25.0</td>
+<td>50</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華急救繃-彈性伸縮（大）12入</td>
+<td>12入/4 x 6.4 cm</td>
+<td>25.0</td>
+<td>25.0</td>
+<td>50</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華急救繃-彈性伸縮（小）22入</td>
+<td>22入/2 x 6.4 cm</td>
+<td>25.0</td>
+<td>25.0</td>
+<td>50</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>小林創護寧液體絆創膏</td>
+<td>10g</td>
+<td>191.0</td>
+<td>199.0</td>
+<td>239</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1Jdkip5ln2NP7Xw8Ifh3KGuSfxVQE0Ndm" target="_blank">情趣用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>杜蕾斯震震環</td>
+<td>100g</td>
+<td>160.0</td>
+<td>166.0</td>
+<td>219</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-001水性聚氨酯 2枚</td>
+<td>2枚</td>
+<td>259.0</td>
+<td>270.0</td>
+<td>399</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超薄裝 3枚</td>
+<td>3枚</td>
+<td>95.0</td>
+<td>99.0</td>
+<td>149</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-激情裝 3枚</td>
+<td>3枚</td>
+<td>76.0</td>
+<td>79.0</td>
+<td>119</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-AIR輕薄幻隱潤滑裝 3枚</td>
+<td>3枚</td>
+<td>174.5</td>
+<td>181.5</td>
+<td>259</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-真觸感裝 3枚</td>
+<td>3枚</td>
+<td>175.0</td>
+<td>182.0</td>
+<td>259</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-AIR輕薄幻隱裝 3枚</td>
+<td>3枚</td>
+<td>167.5</td>
+<td>175.0</td>
+<td>249</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-雙悅愛潮裝 3枚</td>
+<td>3枚</td>
+<td>160.5</td>
+<td>167.0</td>
+<td>259</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-飆風碼 3枚</td>
+<td>3枚</td>
+<td>135.0</td>
+<td>140.5</td>
+<td>219</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超薄裝更薄型 3枚</td>
+<td>3枚</td>
+<td>138.0</td>
+<td>144.0</td>
+<td>219</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-活力裝 3枚</td>
+<td>3枚</td>
+<td>76.0</td>
+<td>79.0</td>
+<td>119</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超薄勁潤裝 5枚</td>
+<td>5枚</td>
+<td>177.5</td>
+<td>185.0</td>
+<td>289</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-001水性聚氨酯 6枚</td>
+<td>6枚</td>
+<td>700.0</td>
+<td>729.0</td>
+<td>999</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-綜合裝 6枚</td>
+<td>6枚</td>
+<td>148.5</td>
+<td>155.0</td>
+<td>239</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-飆風碼 3枚*2</td>
+<td>3枚 * 2</td>
+<td>238.4</td>
+<td>248.5</td>
+<td>319</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-AIR輕薄幻隱潤滑裝 8枚</td>
+<td>8枚</td>
+<td>366.0</td>
+<td>381.0</td>
+<td>549</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-真觸感裝 8枚</td>
+<td>8枚</td>
+<td>365.0</td>
+<td>380.0</td>
+<td>549</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-熱愛裝王者型 8枚</td>
+<td>8枚</td>
+<td>144.0</td>
+<td>151.2</td>
+<td>219</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-AIR輕薄幻隱裝 8枚</td>
+<td>8枚</td>
+<td>352.5</td>
+<td>367.5</td>
+<td>529</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-AIR輕薄幻隱激潮裝 9枚</td>
+<td>9枚</td>
+<td>366.0</td>
+<td>381.0</td>
+<td>549</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超薄裝更薄型 10枚</td>
+<td>10枚</td>
+<td>362.0</td>
+<td>377.0</td>
+<td>549</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超薄裝 12枚</td>
+<td>12枚</td>
+<td>316.0</td>
+<td>329.0</td>
+<td>479</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-激情裝 12枚</td>
+<td>12枚</td>
+<td>236.0</td>
+<td>246.0</td>
+<td>359</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-薄型 12枚</td>
+<td>12枚</td>
+<td>258.0</td>
+<td>268.0</td>
+<td>419</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-超潤滑裝 12枚</td>
+<td>12枚</td>
+<td>316.0</td>
+<td>329.0</td>
+<td>479</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-凸點裝 12枚</td>
+<td>12枚</td>
+<td>243.0</td>
+<td>253.0</td>
+<td>369</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-雙悅愛潮裝 12枚</td>
+<td>12枚</td>
+<td>494.0</td>
+<td>514.5</td>
+<td>749</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-活力裝 12枚</td>
+<td>12枚</td>
+<td>236.0</td>
+<td>246.0</td>
+<td>359</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯衛生套-螺紋裝 12枚</td>
+<td>12枚</td>
+<td>243.0</td>
+<td>253.0</td>
+<td>369</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯 KY潤滑劑</td>
+<td>100g</td>
+<td>106.0</td>
+<td>110.5</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯女性情趣提升凝露</td>
+<td>10ml</td>
+<td>333.5</td>
+<td>347.5</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯情趣潤滑劑-蘆薈</td>
+<td>50ml</td>
+<td>208.0</td>
+<td>216.5</td>
+<td>310</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯潤滑劑-特級</td>
+<td>50ml</td>
+<td>208.0</td>
+<td>216.5</td>
+<td>310</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯情趣潤滑劑-真觸感</td>
+<td>50ml</td>
+<td>208.0</td>
+<td>216.5</td>
+<td>310</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯潤滑劑-熱感</td>
+<td>50ml</td>
+<td>208.0</td>
+<td>216.5</td>
+<td>310</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>杜蕾斯依蘭依蘭調情2合1按摩情趣潤滑劑</td>
+<td>200ml</td>
+<td>333.5</td>
+<td>347.5</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div></div>
+<div class="usage-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span>機能食品
+    </div>
+<div class="brands-container" style="display:none;">
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/18gBI4vnCPxM_X5AdK-bcLUAzwdBC3I2h" target="_blank">科懋</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>歐3加福精萃濃縮魚油EPA(紅) 30顆</td>
+<td>30顆</td>
+<td>420.0</td>
+<td>437.5</td>
+<td>840</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>歐3加福精萃濃縮魚油EPA(紅) 60顆</td>
+<td>60顆</td>
+<td>840.0</td>
+<td>875.0</td>
+<td>1680</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>歐3加福精萃濃縮魚油DHA(藍) 30顆</td>
+<td>30顆</td>
+<td>420.0</td>
+<td>437.5</td>
+<td>840</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>歐3加福精萃濃縮魚油DHA(藍) 60顆</td>
+<td>60顆</td>
+<td>840.0</td>
+<td>875.0</td>
+<td>1680</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>幼安活菌液D3 (0-1歲)</td>
+<td>8ml</td>
+<td>990.0</td>
+<td>1031.0</td>
+<td>1980</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>幼安活菌液LGG+ (&gt;1歲)</td>
+<td>10ml</td>
+<td>990.0</td>
+<td>1031.0</td>
+<td>1980</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>讚益機能活菌膠囊</td>
+<td>30粒</td>
+<td>900.0</td>
+<td>937.0</td>
+<td>1800</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>安脂活菌膠囊</td>
+<td>30粒</td>
+<td>675.0</td>
+<td>703.0</td>
+<td>1350</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>愛必賜活菌膠囊</td>
+<td>30粒</td>
+<td>675.0</td>
+<td>703.0</td>
+<td>1350</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>科懋利脂受</td>
+<td>21包</td>
+<td>894.0</td>
+<td>931.0</td>
+<td>1490</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1Z_9ROWsPaXuD5aZA9ZwatAWvFN9OLEOY" target="_blank">葡萄王</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>葡萄王極品靈芝王膠囊</td>
+<td>189錠</td>
+<td>1350.0</td>
+<td>1405.0</td>
+<td>1800</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王靈芝王膠囊(9%)</td>
+<td>270粒</td>
+<td>1350.0</td>
+<td>1405.0</td>
+<td>1800</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王極品樟芝菌絲體膠囊</td>
+<td>120粒</td>
+<td>1400.0</td>
+<td>1458.0</td>
+<td>1880</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王益菌王粉末顆粒</td>
+<td>30包</td>
+<td>559.0</td>
+<td>582.0</td>
+<td>990</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王LGG特益菌粉末顆粒</td>
+<td>30包</td>
+<td>520.0</td>
+<td>540.0</td>
+<td>890</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王益菌王益生菌膠囊</td>
+<td>60粒</td>
+<td>525.0</td>
+<td>546.0</td>
+<td>700</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王人蔘蜆B群雙層加強錠</td>
+<td>30錠</td>
+<td>350.0</td>
+<td>365.0</td>
+<td>450</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王靈芝王膠囊</td>
+<td>60粒</td>
+<td>400.0</td>
+<td>417.0</td>
+<td>750</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王認證樟芝王菌絲體膠囊</td>
+<td>60粒</td>
+<td>1000.0</td>
+<td>1040.0</td>
+<td>1350</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王易得纖益生菌膠囊</td>
+<td>30粒</td>
+<td>590.0</td>
+<td>613.5</td>
+<td>1080</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>葡萄王孅益薑黃複方膠囊</td>
+<td>100粒</td>
+<td>1042.0</td>
+<td>1083.5</td>
+<td>2250</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/19JJXT_GFCbQTcMxDSNyUDUJi5llaNnsJ" target="_blank">關節保健</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>益節UC-II+鈣關鍵口嚼錠</td>
+<td>30錠</td>
+<td>861.7</td>
+<td>896.0</td>
+<td>1249</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>益節薑黃+羅望精萃迷你錠</td>
+<td>30錠</td>
+<td>824.0</td>
+<td>858.0</td>
+<td>999</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>益節加強型迷你錠</td>
+<td>30錠</td>
+<td>769.0</td>
+<td>801.0</td>
+<td>1199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>益節高鈣+鎂+維生素D液態軟膠囊</td>
+<td>90顆</td>
+<td>769.0</td>
+<td>800.0</td>
+<td>1199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>益節葡萄糖胺錠</td>
+<td>150錠</td>
+<td>855.5</td>
+<td>892.0</td>
+<td>1009</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>益節葡萄糖胺複能3合1加強錠 </td>
+<td>150錠</td>
+<td>1030.0</td>
+<td>1073.0</td>
+<td>1599</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1lDwTCB36w7yRYbQPNChOiVuAtP85_F3j" target="_blank">喉糖（無藥）</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>舒立效潤喉糖-柑橘風味</td>
+<td>8粒</td>
+<td>48.24</td>
+<td>50.3</td>
+<td>59</td>
+<td>一次出12個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>舒立效潤喉糖-勁涼薄荷風味</td>
+<td>8粒</td>
+<td>48.24</td>
+<td>50.3</td>
+<td>59</td>
+<td>一次出12個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>免廢言金銀花療肺草好呼順吸爽喉糖</td>
+<td>25g</td>
+<td>46.5</td>
+<td>48.5</td>
+<td>75</td>
+<td>一次出6個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>免廢言金銀花MIR2911好呼順吸膠囊</td>
+<td>90粒</td>
+<td>720.0</td>
+<td>750.0</td>
+<td>1500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>十八銅人功夫潤喉糖-甘草檸檬</td>
+<td>100g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>十八銅人功夫Q喉糖-雙層枇杷</td>
+<td>85g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>十八銅人行氣爽喉糖-草本薄荷</td>
+<td>90g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1r45QysTWxZrI5QIe0JHerItqBawwSnc0" target="_blank">韓國人蔘製品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>正官庄高麗蔘精EVERYTIME</td>
+<td>10ml * 30包</td>
+<td>1080.0</td>
+<td>1120.0</td>
+<td>1500</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>正官庄活蔘28D高麗蔘活力飲(8入盒裝)</td>
+<td>100ml * 8瓶</td>
+<td>360.0</td>
+<td>375.0</td>
+<td>552</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>正官庄活蔘28D高麗蔘活力飲(10入盒裝)</td>
+<td>100ml * 10瓶</td>
+<td>400.0</td>
+<td>415.0</td>
+<td>690</td>
+<td></td>
+<td>效期&lt;5個月不能退換</td>
+</tr>
+<tr>
+<td>金蔘六年根高麗蔘芝王禮盒</td>
+<td>100ml x 7瓶</td>
+<td>385.0</td>
+<td>400.0</td>
+<td>590</td>
+<td>一次出7瓶</td>
+<td>效期&lt;3個月不能退換</td>
+</tr>
+<tr>
+<td>金蔘六年根高麗蔘芝王瓶裝</td>
+<td>100ml x 10瓶</td>
+<td>48.5</td>
+<td>51.0</td>
+<td>69</td>
+<td></td>
+<td>效期&lt;3個月不能退換</td>
+</tr>
+<tr>
+<td>金蔘高麗人蔘精華液瓶裝</td>
+<td>120ml x 3瓶</td>
+<td>92.16</td>
+<td>96.0</td>
+<td>130</td>
+<td></td>
+<td>效期&lt;3個月不能退換</td>
+</tr>
+<tr>
+<td>金蔘高麗人蔘精華液禮盒</td>
+<td>120ml x 5瓶</td>
+<td>495.0</td>
+<td>515.0</td>
+<td>690</td>
+<td>一次出5瓶</td>
+<td>效期&lt;3個月不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1jVIqJ77WBMpiOhDXDZteJuWiGah7fec8" target="_blank">兒童食品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>吉樂兒營養Ｃ軟糖-袋裝</td>
+<td>60g</td>
+<td>30.0</td>
+<td>30.0</td>
+<td>60</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒營養Ｃ軟糖-杯裝</td>
+<td>100g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>120</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒營養Ｃ軟糖-特大袋</td>
+<td>1000g</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>300</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒營養乳片-袋裝</td>
+<td>45g</td>
+<td>30.0</td>
+<td>30.0</td>
+<td>60</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒營養乳片-杯裝</td>
+<td>70g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>120</td>
+<td></td>
+<td>不能退換</td>
+</tr>
+<tr>
+<td>寶可夢益生菌Q軟糖 25g</td>
+<td>25g</td>
+<td>20.0</td>
+<td>20.0</td>
+<td>29</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>哆啦A夢益生菌Q軟糖 35g</td>
+<td>35g</td>
+<td>22.0</td>
+<td>22.0</td>
+<td>35</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶可夢益生菌Q軟糖 75g</td>
+<td>75g</td>
+<td>40.0</td>
+<td>40.0</td>
+<td>69</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>哆啦A夢益生菌Q軟糖 120g</td>
+<td>120g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>波力益生菌Q軟糖 270g</td>
+<td>270g</td>
+<td>78.0</td>
+<td>81.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>哆啦A夢魚油QQ軟糖</td>
+<td>12g</td>
+<td>6.67</td>
+<td>6.67</td>
+<td>10</td>
+<td>一次出12個</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒益生菌乳片 10g</td>
+<td>10g</td>
+<td>6.67</td>
+<td>6.67</td>
+<td>10</td>
+<td>一次出12個</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶可夢益生菌乳片 20g</td>
+<td>20g</td>
+<td>20.0</td>
+<td>20.0</td>
+<td>29</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>波力益生菌乳片 100g</td>
+<td>100g</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>波力益生菌果凍-葡萄風味</td>
+<td>100g</td>
+<td>20.0</td>
+<td>20.0</td>
+<td>25</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>波力益生菌果凍-乳酸風味</td>
+<td>100g</td>
+<td>20.0</td>
+<td>20.0</td>
+<td>25</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒補充飲品-葡萄口味</td>
+<td>500ml</td>
+<td>30.0</td>
+<td>31.25</td>
+<td>60</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>吉樂兒補充飲品-蘋果口味</td>
+<td>500ml</td>
+<td>30.0</td>
+<td>31.25</td>
+<td>60</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1lmorpPZuSvHmaSixWB9sVH4FGGj6yoRQ" target="_blank">飲後對策</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>myrkl醚立克膠囊隨身包(2粒)</td>
+<td>2粒</td>
+<td>120.0</td>
+<td>125.0</td>
+<td>200</td>
+<td></td>
+<td>效期&lt;6個月不能退換</td>
+</tr>
+<tr>
+<td>myrkl醚立克膠囊盒裝(10粒)</td>
+<td>10粒</td>
+<td>600.0</td>
+<td>625.0</td>
+<td>1000</td>
+<td></td>
+<td>效期&lt;6個月不能退換</td>
+</tr>
+<tr>
+<td>无酩乾杯飲-水梨桂圓風味</td>
+<td>50ml</td>
+<td>100.0</td>
+<td>105.0</td>
+<td>150</td>
+<td>一次出10個</td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1aj5n57o98rioThC7N1kP0g6gXzsgAoYj" target="_blank">其他食品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>麗清酵清新錠火氣好一點（袋裝）</td>
+<td>9粒</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td>一次出20袋</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>麗清酵清新錠火氣好一點（瓶裝）</td>
+<td>60粒</td>
+<td>300.0</td>
+<td>300.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+<tr>
+<td>麗清酵順暢多一點（袋裝）</td>
+<td>9粒</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td>一次出20袋</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>麗清酵順暢多一點（瓶裝）</td>
+<td>120粒</td>
+<td>550.0</td>
+<td>550.0</td>
+<td>1000</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華挪威高濃度頂級魚油92% 1000mg</td>
+<td>30顆</td>
+<td>250.0</td>
+<td>250.0</td>
+<td>500</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華挪威高濃度頂級魚油85% 1260mg</td>
+<td>30顆</td>
+<td>300.0</td>
+<td>300.0</td>
+<td>600</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>愛維寶發泡錠-香橙口味</td>
+<td>10錠</td>
+<td>204.5</td>
+<td>213.0</td>
+<td>245</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tr></tbody>
+</table></div></div>
+</div></div>
+<div class="usage-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span>化妝品
+    </div>
+<div class="brands-container" style="display:none;">
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1-sTUjIA4sKEGSLmn-zRquarx9NaRz259" target="_blank">染髮劑</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>566美色護髮染髮霜 1#沉穩深黑</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 3#自然亮黑</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 3A#自然亮黑(男)</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 3B#魅力柔黑</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 4#栗黑色</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 5#自然深栗</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 6#栗褐色</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 7#深褐色</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 8#葡萄酒紅</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜 11#金棕栗</td>
+<td>40g + 40g</td>
+<td>155.0</td>
+<td>161.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜補充盒 3#自然亮黑</td>
+<td>40g + 40g</td>
+<td>135.0</td>
+<td>140.0</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜補充盒 5#自然深栗</td>
+<td>40g + 40g</td>
+<td>135.0</td>
+<td>140.0</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜補充盒 6#栗褐色</td>
+<td>40g + 40g</td>
+<td>135.0</td>
+<td>140.0</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜補充盒 7#深褐色</td>
+<td>40g + 40g</td>
+<td>135.0</td>
+<td>140.0</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>566美色護髮染髮霜補充盒 8#葡萄酒紅</td>
+<td>40g + 40g</td>
+<td>135.0</td>
+<td>140.0</td>
+<td>169</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 3#明栗色</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 4#淺栗色</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 5#栗色</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 5A#亞麻栗</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 5P#酒紅栗</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 6#濃栗色</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩草本染髮霜 7#深褐色</td>
+<td>50g + 50g</td>
+<td>250.0</td>
+<td>260.0</td>
+<td>380</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩絲佳快速染髮霜 4G自然栗色</td>
+<td>50g + 50g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩絲佳快速染髮霜 5G栗色</td>
+<td>50g + 50g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩絲佳快速染髮霜 6G濃褐色</td>
+<td>50g + 50g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩絲佳快速染髮霜 7G自然黑褐色</td>
+<td>50g + 50g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>伊露恩絲佳快速染髮霜 3G亮栗色</td>
+<td>50g + 50g</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜 4#自然栗色</td>
+<td>40g +40g</td>
+<td>153.6</td>
+<td>160.0</td>
+<td>200</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜 5#深栗色</td>
+<td>40g +40g</td>
+<td>153.6</td>
+<td>160.0</td>
+<td>200</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜 6#自然褐色</td>
+<td>40g +40g</td>
+<td>153.6</td>
+<td>160.0</td>
+<td>200</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜 7#自然黑褐色</td>
+<td>40g +40g</td>
+<td>153.6</td>
+<td>160.0</td>
+<td>200</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜經濟包 6#自然褐色</td>
+<td>40g +40g</td>
+<td>149.0</td>
+<td>155.0</td>
+<td>170</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>寶王快染染髮霜經濟包 7#自然黑褐色</td>
+<td>40g +40g</td>
+<td>149.0</td>
+<td>155.0</td>
+<td>170</td>
+<td>24+1, 72+4</td>
+<td>過期不能退換</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1g8kBjzG8-IFp-rOTM5uquVn-0ZzRcQ9a" target="_blank">皮膚/毛髮保養</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>芮培菈100%純玫瑰果油</td>
+<td>15ml</td>
+<td>545.0</td>
+<td>567.7</td>
+<td>990</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈護益膚面霜</td>
+<td>50ml</td>
+<td>485.0</td>
+<td>505.0</td>
+<td>880</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈小分子賦活緊實面霜</td>
+<td>50ml</td>
+<td>825.0</td>
+<td>860.0</td>
+<td>1500</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈玫瑰果油噴劑</td>
+<td>90ml</td>
+<td>825.0</td>
+<td>859.5</td>
+<td>1500</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈玫瑰果油乳霜</td>
+<td>125ml</td>
+<td>545.0</td>
+<td>567.7</td>
+<td>990</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈極緻護益膚乳霜</td>
+<td>150ml</td>
+<td>550.0</td>
+<td>573.0</td>
+<td>990</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈護益膚身體乳</td>
+<td>500ml</td>
+<td>750.0</td>
+<td>781.0</td>
+<td>1350</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>芮培菈護益膚沐浴露</td>
+<td>750ml</td>
+<td>820.0</td>
+<td>854.0</td>
+<td>1490</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®萌髮生髮液5%</td>
+<td>60ml</td>
+<td>840.0</td>
+<td>875.0</td>
+<td>1200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>萌髮科研凍齡蓬鬆養髮液EX</td>
+<td>50g</td>
+<td>299.0</td>
+<td>311.5</td>
+<td>399</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>萌髮科研凍齡蓬鬆洗髮精EX-修護涼爽</td>
+<td>500g</td>
+<td>237.0</td>
+<td>247.0</td>
+<td>299</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>萌髮科研凍齡蓬鬆洗髮精EX-修護柔順</td>
+<td>500g</td>
+<td>237.0</td>
+<td>247.0</td>
+<td>299</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>手美果浣熊乾洗手凝膠 60ml</td>
+<td>60ml</td>
+<td>108.0</td>
+<td>112.5</td>
+<td>165</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>手美果浣熊乾洗手凝膠 300ml</td>
+<td>300ml</td>
+<td>165.0</td>
+<td>172.0</td>
+<td>250</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>手美果浣熊乾洗手凝膠組合</td>
+<td>60ml+套</td>
+<td>118.0</td>
+<td>123.0</td>
+<td>180</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>寶貝凡士林 60g</td>
+<td>60g</td>
+<td>104.0</td>
+<td>108.0</td>
+<td>159</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>寶貝凡士林唇膏 15g</td>
+<td>15g</td>
+<td>69.0</td>
+<td>72.0</td>
+<td>99</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華角質軟化貼片</td>
+<td>10入</td>
+<td>65.0</td>
+<td>65.0</td>
+<td>100</td>
+<td>12+1</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>豈瑞角質軟化貼片</td>
+<td>8片</td>
+<td>60.0</td>
+<td>60.0</td>
+<td>100</td>
+<td>50+2</td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div></div>
+<div class="usage-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span>日用品
+    </div>
+<div class="brands-container" style="display:none;">
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/15WuvyRstkEaFm1GKzTkcTsF4IR4x-F4W" target="_blank">口腔用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>德恩奈兒童牙膏-水蜜桃</td>
+<td>90g</td>
+<td>78.0</td>
+<td>81.0</td>
+<td>98</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈兒童牙膏-草莓</td>
+<td>90g</td>
+<td>78.0</td>
+<td>81.0</td>
+<td>98</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈清淨涼牙膏</td>
+<td>156g</td>
+<td>78.0</td>
+<td>81.0</td>
+<td>98</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈超氟防蛀+修護牙膏</td>
+<td>156g</td>
+<td>74.0</td>
+<td>77.0</td>
+<td>92</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈兒童漱口水</td>
+<td>500ml</td>
+<td>156.0</td>
+<td>162.5</td>
+<td>195</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈清新雙效漱口水</td>
+<td>500ml</td>
+<td>156.0</td>
+<td>162.5</td>
+<td>195</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈兒童防蛀漱口水</td>
+<td>500ml</td>
+<td>156.0</td>
+<td>162.5</td>
+<td>195</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈深層潔淨漱口水</td>
+<td>720ml</td>
+<td>224.0</td>
+<td>233.0</td>
+<td>269</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈護理牙刷</td>
+<td></td>
+<td>38.4</td>
+<td>40.0</td>
+<td>55</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈幸運星兒童牙刷</td>
+<td></td>
+<td>23.04</td>
+<td>24.0</td>
+<td>32</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈極淨細絲牙刷</td>
+<td></td>
+<td>48.0</td>
+<td>50.0</td>
+<td>68</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈前觸動感牙刷</td>
+<td></td>
+<td>37.0</td>
+<td>38.5</td>
+<td>49</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈假牙清潔錠</td>
+<td>24片+24片</td>
+<td>137.0</td>
+<td>143.0</td>
+<td>175</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈抗敏感三效牙膏</td>
+<td>260g+260g</td>
+<td>132.0</td>
+<td>137.5</td>
+<td>165</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈口腔護具清潔錠</td>
+<td>30片+30片</td>
+<td>200.0</td>
+<td>208.0</td>
+<td>268</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈夜用牙膏</td>
+<td>126g+126g</td>
+<td>160.0</td>
+<td>167.0</td>
+<td>199</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>德恩奈牙齦護理維他命牙膏</td>
+<td>126g+126g</td>
+<td>131.0</td>
+<td>136.5</td>
+<td>165</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>口立淨7酵素護理口腔凝膠</td>
+<td>40ml</td>
+<td>419.4</td>
+<td>437.0</td>
+<td>699</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>口立淨7酵素清新口腔噴劑</td>
+<td>50ml</td>
+<td>349.3</td>
+<td>364.0</td>
+<td>499</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>口立淨7酵素護理牙膏</td>
+<td>75ml</td>
+<td>315.0</td>
+<td>328.0</td>
+<td>450</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>口立淨7酵素護理漱口水 250ml</td>
+<td>250ml</td>
+<td>315.0</td>
+<td>328.0</td>
+<td>450</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>口立淨7酵素護理漱口水 500ml</td>
+<td>500ml</td>
+<td>483.0</td>
+<td>503.0</td>
+<td>690</td>
+<td></td>
+<td>過期不能退換</td>
+</tr>
+<tr>
+<td>®寶馬生嗽口水</td>
+<td>360ml</td>
+<td>168.0</td>
+<td>175.0</td>
+<td>245</td>
+<td></td>
+<td>效期&lt;6個月不能退換</td>
+</tr>
+<tr>
+<td>甲子K.S蜂膠牙膏</td>
+<td>144g</td>
+<td>170.0</td>
+<td>170.0</td>
+<td>300</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1qD5TdTOXPnbO8mdOhhCz2GG2uHd2Hq2b" target="_blank">清潔用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>滴露香皂-滋潤倍護</td>
+<td>100g</td>
+<td>34.5</td>
+<td>36.0</td>
+<td>43</td>
+<td>一次出3個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>滴露香皂-經典松木</td>
+<td>100g</td>
+<td>34.5</td>
+<td>36.0</td>
+<td>43</td>
+<td>一次出3個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>滴露香皂-清新柑橘</td>
+<td>100g</td>
+<td>34.5</td>
+<td>36.0</td>
+<td>43</td>
+<td>一次出3個</td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>滴露抗菌潔手液-經典松木</td>
+<td>250ml</td>
+<td>79.0</td>
+<td>82.0</td>
+<td>99</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>滴露抗菌潔手液-滋潤倍護</td>
+<td>250ml</td>
+<td>79.0</td>
+<td>82.0</td>
+<td>99</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>滴露泡沫潔手液-滋潤蘆薈</td>
+<td>250ml</td>
+<td>103.0</td>
+<td>107.5</td>
+<td>129</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>®滴露消毒藥水</td>
+<td>750ml</td>
+<td>210.0</td>
+<td>219.0</td>
+<td>275</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>克異香鞋內除臭粉</td>
+<td>110g</td>
+<td>96.0</td>
+<td>100.0</td>
+<td>165</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1Ytq1Pz1MeMjMfQQvrwGLUDiG6clIXKYB" target="_blank">驅蟲用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>全日防蚊達人天然植物精油防蚊液</td>
+<td>100ml</td>
+<td>125.0</td>
+<td>130.0</td>
+<td>180</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div>
+<div class="brand-header" onclick="toggleSection(this)">
+<span class="toggle-symbol">＋</span><a href="https://drive.google.com/file/d/1sGuZ8zcGYGOIjY5Oyrh876E9wt3tpdFD" target="_blank">促進循環/止暈用品</a>
+</div>
+<div class="items">
+<div class="table-outer"><div class="table-inner"><table>
+<thead>
+<tr><th>品名</th><th>規格</th><th>現金價</th><th>開票價</th><th>零售價</th><th>常年活動</th><th>退貨處理</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>日華穴道針灸絆 2片（黃）</td>
+<td>2片</td>
+<td>76.0</td>
+<td>76.0</td>
+<td>100</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆 2片（黑加強）</td>
+<td>2片</td>
+<td>80.0</td>
+<td>80.0</td>
+<td>120</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆 6片（3組）</td>
+<td>6片（3組）</td>
+<td>200.0</td>
+<td>200.0</td>
+<td>250</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆 12片</td>
+<td>12片</td>
+<td>120.0</td>
+<td>120.0</td>
+<td>200</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆替換貼片 24片</td>
+<td>24片</td>
+<td>35.0</td>
+<td>35.0</td>
+<td>50</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆-EX項圈 45cm</td>
+<td>45cm</td>
+<td>390.0</td>
+<td>390.0</td>
+<td>650</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆-EX項圈 50cm</td>
+<td>50cm</td>
+<td>390.0</td>
+<td>390.0</td>
+<td>650</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆-EX項圈 60cm</td>
+<td>60cm</td>
+<td>390.0</td>
+<td>390.0</td>
+<td>650</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+<tr>
+<td>日華穴道針灸絆-EX手環</td>
+<td></td>
+<td>250.0</td>
+<td>250.0</td>
+<td>390</td>
+<td></td>
+<td>都可處理</td>
+</tr>
+</tbody>
+</table></div></div>
+</div></div>
+<script>
+function toggleSection(el) {
+  const target = el.nextElementSibling;
+  const symbol = el.querySelector(".toggle-symbol");
+  if (target.style.display === "none" || !target.style.display) {
+    target.style.display = "block";
+    symbol.textContent = "－";
+  } else {
+    target.style.display = "none";
+    symbol.textContent = "＋";
+  }
+}
+function expandAll() {
+  document.querySelectorAll(".brands-container, .items").forEach(d => d.style.display = "block");
+  document.querySelectorAll(".toggle-symbol").forEach(s => s.textContent = "－");
+}
+function collapseAll() {
+  document.querySelectorAll(".brands-container, .items").forEach(d => d.style.display = "none");
+  document.querySelectorAll(".toggle-symbol").forEach(s => s.textContent = "＋");
+}
+function filterUsage() {
+  const input = document.getElementById("searchInput").value.toLowerCase();
+  document.querySelectorAll(".usage-header").forEach(header => {
+    const container = header.nextElementSibling;
+    let found = false;
+    container.querySelectorAll(".brand-header").forEach(bh => {
+      const items = bh.nextElementSibling;
+      let match = false;
+      items.querySelectorAll("tbody tr").forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const show = text.includes(input);
+        row.style.display = show ? "" : "none";
+        if (show) match = true;
+      });
+      bh.style.display = match ? "" : "none";
+      items.style.display = match ? "block" : "none";
+      bh.querySelector(".toggle-symbol").textContent = match ? "－" : "＋";
+      if (match) found = true;
+    });
+    header.style.display = found ? "" : "none";
+    container.style.display = found ? "block" : "none";
+    header.querySelector(".toggle-symbol").textContent = found ? "－" : "＋";
+  });
+}
+</script>
+</body>
+</html>
