@@ -114,30 +114,35 @@
 
   <div class="top-controls">
     <div class="row">
+      <div>總計金額：<span id="grand-total">0</span> 元</div>
       <div>加總金額：<span id="final-total">0</span> 元</div>
     </div>
-    <div class="gift-box">
-      <div class="gift-line" id="gift-info">滿額贈品：無</div>
-      <div class="hint" id="next-tier">距離下一支還差：— 元</div>
-      <div class="hint" id="gift-hint">規則：每 $7,000 贈白花油 #1 ×1；每 $21,000 贈白花油 #1 ×4。</div>
-    </div>
     <div class="row">
-      <label>客戶名稱：
-        <input type="text" id="customer" placeholder="例如：大里昱昭">
-      </label>
       <label>之前已出金額：
         <input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*">
+      </label>
+      <label>客戶名稱：
+        <input type="text" id="customer" placeholder="例如：王小明藥局">
       </label>
       <label>備註：
         <input type="text" id="note" placeholder="例如：急件／星期四到貨">
       </label>
     </div>
 
+    <div class="gift-box">
+      <div class="gift-line" id="gift-info">滿額贈品：無</div>
+      <div class="hint" id="gift-hint">
+        規則：每 $7,000 贈白花油 #1 ×1；每 $21,000 贈白花油 #1 ×4。<br/>
+        計算方式：每 $21,000 計 4 支，剩餘金額再以每 $7,000 計 1 支。
+      </div>
+      <div class="hint" id="next-tier">距離下一支還差：— 元</div>
+    </div>
+
     <div class="actions">
       <button id="generate" class="primary">生成訂單圖檔</button>
-      <button id="share">直接分享至line</button>
+      <button id="share">直接分享（支援的瀏覽器）</button>
       <button id="copy-text">複製文字版</button>
-      <button id="clear-btn">重新開始</button>
+      <button id="clear-btn">清除數量</button>
     </div>
   </div>
 
