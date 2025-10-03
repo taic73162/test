@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>白花油活動（現金價）計算＋訂單圖檔</title>
+  <style>
+    :root {
+      --border: #ccc;
+      --muted: #666;
+      --bg: #f8f8f8;
+      --accent: #0b72ff;
+      --gift: #0a7c2f;
+      --card: #ffffff;
+    }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif; padding: 10px; background:#fff; }
+    h2 { margin: 8px 0 14px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid var(--border); padding: 8px; text-align: center; }
+    th { background-color: #f4f4f4; }
+    input[type="number"] { width: 100px; padding: 6px 8px; font-size: 1rem; }
+    input[type="text"] { padding: 6px 8px; font-size: 1rem; width: 260px; }
+    .top-controls { font-weight: 600; font-size: 1rem; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .muted { color: var(--muted); font-weight: 500; }
+    .gift-box {
+      border: 1px dashed var(--gift);
+      background: #f3fbf5;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gift-line { font-weight: 700; color: var(--gift); }
+    .hint { font-size: 0.9rem; color: var(--muted); }
+    .row { display:flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    button { padding: 8px 12px; font-size: 1rem; cursor: pointer; width: fit-content; border-radius: 8px; border: 1px solid var(--border); background: white; }
+    button.primary { background:#0b72ff; color:#fff; border-color:#0b72ff; }
+    button:hover { filter: brightness(0.98); }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .preview-wrap { margin-top: 14px; display:none; gap: 12px; align-items: start; }
+    .preview-wrap.show { display:flex; flex-direction: column; }
+    .preview { max-width: 100%; border:1px solid var(--border); border-radius:8px; }
+    .order-card {
+      width: 880px;  /* 方便Line、手機閱讀的寬度 */
+      background: var(--card);
+      color:#000;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+    .order-head { display:flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .order-title { font-size: 20px; font-weight: 800; }
+    .order-meta { font-size: 12px; color: #333; display:flex; gap: 10px; flex-wrap: wrap; }
+    .order-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+    .order-table th, .order-table td { border: 1px solid #ddd; padding: 6px 8px; text-align: right; }
+    .order-table th:first-child, .order-table td:first-child { text-align: left; }
+    .order-summary { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 6px; font-size: 14px; }
+    .order-summary .label { color: #333; }
+    .order-summary .value { font-weight: 800; }
+    .order-gift { margin-top: 8px; font-weight: 700; color: var(--gift); }
+    .order-note { margin-top: 8px; font-size: 13px; color:#333; }
+    .divider { height: 1px; background:#e8e8e8; margin: 8px 0; }
+    .foot-hint { font-size: 12px; color: var(--muted); }
+    .success { color: #0a7c2f; font-weight: 700; }
+    .text-preview { white-space: pre-wrap; background:#fafafa; border:1px solid #eee; padding:10px; border-radius:8px; font-size: 14px; }
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead tr { display: none; }
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+      }
+      td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid var(--border);
+      }
+      td:last-child { border-bottom: none; }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 700;
+      }
+      .order-card { width: 100%; padding: 12px; }
+    }
+    @media (max-width: 600px) {
+      .top-controls {
+        position: sticky;
+        bottom: 0; left: 0; right: 0;
+        background-color: #fff;
+        border-top: 1px solid var(--border);
+        padding: 10px;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+        z-index: 1000;
+      }
+      body { padding-bottom: 10px; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <h2>白花油活動（現金價）計算</h2>
+
+  <div class="top-controls">
+    <div class="row">
+      <div>總計金額：<span id="grand-total">0</span> 元</div>
+      <div>加總金額：<span id="final-total">0</span> 元</div>
+    </div>
+    <div class="row">
+      <label>之前已出金額：
+        <input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*">
+      </label>
+      <label>客戶名稱：
+        <input type="text" id="customer" placeholder="例如：王小明藥局">
+      </label>
+      <label>備註：
+        <input type="text" id="note" placeholder="例如：急件／星期四到貨">
+      </label>
+    </div>
+
+    <div class="gift-box">
+      <div class="gift-line" id="gift-info">滿額贈品：無</div>
+      <div class="hint" id="gift-hint">
+        規則：每 $7,000 贈白花油 #1 ×1；每 $21,000 贈白花油 #1 ×4。<br/>
+        計算方式：每 $21,000 計 4 支，剩餘金額再以每 $7,000 計 1 支。
+      </div>
+      <div class="hint" id="next-tier">距離下一支還差：— 元</div>
+    </div>
+
+    <div class="actions">
+      <button id="generate" class="primary">生成訂單圖檔</button>
+      <button id="share">直接分享（支援的瀏覽器）</button>
+      <button id="copy-text">複製文字版</button>
+      <button id="clear-btn">清除數量</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>品名</th>
+        <th>現金價</th>
+        <th>數量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody id="product-table">
+      <tr>
+        <td data-label="品名">白花油 #1</td><td data-label="現金價">240</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="240"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 #2</td><td data-label="現金價">154</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="154"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 #3</td><td data-label="現金價">89</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="89"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 XL</td><td data-label="現金價">432</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="432"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 訂單卡片容器（用來轉成圖檔） -->
+  <div id="order-card" class="order-card" style="margin-top:14px;">
+    <div class="order-head">
+      <div class="order-title">訂單確認單</div>
+      <div class="order-meta">
+        <span id="meta-date"></span>
+      </div>
+    </div>
+    <div class="order-meta">
+      <div>客戶：<span id="meta-customer">—</span></div>
+      <div>備註：<span id="meta-note">—</span></div>
+    </div>
+    <div class="divider"></div>
+    <table class="order-table" id="order-table">
+      <thead>
+        <tr><th>品名</th><th>數量</th><th>單價</th><th>小計</th></tr>
+      </thead>
+      <tbody id="order-items"><tr><td colspan="4" style="text-align:center;color:#666;">尚未選購任何品項</td></tr></tbody>
+    </table>
+    <div class="order-summary">
+      <div class="label">本次總計：</div><div class="value" id="sum-grand">0 元</div>
+      <div class="label">之前已出：</div><div class="value" id="sum-prev">0 元</div>
+      <div class="label">加總金額：</div><div class="value" id="sum-final">0 元</div>
+    </div>
+    <div class="order-gift" id="sum-gift">滿額贈品：無</div>
+    <div class="order-note foot-hint">※ 圖檔可直接分享至 LINE 群／同事。實際出貨仍以系統建立為準。</div>
+  </div>
+
+  <div id="result" class="preview-wrap">
+    <div class="success" id="result-msg"></div>
+    <img id="preview" class="preview" alt="訂單預覽"/>
+    <div class="actions">
+      <a id="download-link" download="order.png"><button class="primary">下載訂單圖檔</button></a>
+      <a id="share-line-text" target="_blank" rel="noopener"><button>用 LINE 傳文字</button></a>
+    </div>
+    <div>
+      <div class="hint">（若直接分享圖檔失敗：先點「下載訂單圖檔」，再到 LINE 手動選取圖片上傳）</div>
+      <div class="hint">或使用上方「用 LINE 傳文字」快速貼上文字版。</div>
+      <details>
+        <summary>預覽文字版內容</summary>
+        <div id="text-preview" class="text-preview"></div>
+      </details>
+    </div>
+  </div>
+
+  <script>
+    const inputs = document.querySelectorAll('input[type="number"]');
+    const previousTotalInput = document.getElementById('previous-total');
+    const grandEl = document.getElementById('grand-total');
+    const finalEl = document.getElementById('final-total');
+    const giftInfoEl = document.getElementById('gift-info');
+    const nextTierEl = document.getElementById('next-tier');
+    const clearBtn = document.getElementById('clear-btn');
+
+    const customerInput = document.getElementById('customer');
+    const noteInput = document.getElementById('note');
+
+    const orderCard = document.getElementById('order-card');
+    const orderItems = document.getElementById('order-items');
+    const metaDate = document.getElementById('meta-date');
+    const metaCustomer = document.getElementById('meta-customer');
+    const metaNote = document.getElementById('meta-note');
+    const sumGrand = document.getElementById('sum-grand');
+    const sumPrev = document.getElementById('sum-prev');
+    const sumFinal = document.getElementById('sum-final');
+    const sumGift = document.getElementById('sum-gift');
+
+    const btnGenerate = document.getElementById('generate');
+    const btnShare = document.getElementById('share');
+    const btnCopyText = document.getElementById('copy-text');
+
+    const resultWrap = document.getElementById('result');
+    const previewImg = document.getElementById('preview');
+    const downloadLink = document.getElementById('download-link');
+    const shareLineText = document.getElementById('share-line-text');
+    const textPreview = document.getElementById('text-preview');
+    const resultMsg = document.getElementById('result-msg');
+
+    // 滿額贈：每 21,000 計 4 支；餘數再以每 7,000 計 1 支
+    function calcGifts(total) {
+      const bigBlocks = Math.floor(total / 21000);
+      const remainder = total % 21000;
+      const smallBlocks = Math.floor(remainder / 7000);
+      return bigBlocks * 4 + smallBlocks;
+    }
+    function calcNextGap(total) {
+      const next7000 = (Math.floor(total / 7000) + 1) * 7000;
+      return Math.max(0, next7000 - total);
+    }
+    function formatCurrency(n) { return (Math.max(0, Math.floor(n))).toString(); }
+
+    function currentDateStr() {
+      const d = new Date();
+      const pad = n => n.toString().padStart(2, '0');
+      return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function updateTotals() {
+      let grandTotal = 0;
+      inputs.forEach(input => {
+        if (input.id !== "previous-total") {
+          const price = parseFloat(input.dataset.price);
+          const quantity = parseInt(input.value, 10) || 0;
+          const subtotal = price * quantity;
+          input.closest('tr').querySelector('.subtotal').textContent = formatCurrency(subtotal);
+          grandTotal += subtotal;
+        }
+      });
+      const previousTotal = parseFloat(previousTotalInput.value) || 0;
+      const finalTotal = grandTotal + previousTotal;
+      grandEl.textContent = formatCurrency(grandTotal);
+      finalEl.textContent = formatCurrency(finalTotal);
+
+      const gifts = calcGifts(finalTotal);
+      giftInfoEl.textContent = gifts > 0 ? `滿額贈品：白花油 #1 × ${gifts} 支` : "滿額贈品：無";
+      const gap = calcNextGap(finalTotal);
+      nextTierEl.textContent = `距離下一支還差：${formatCurrency(gap)} 元`;
+    }
+
+    function clearQuantities() {
+      inputs.forEach(input => {
+        if (input.id === "previous-total") {
+          input.value = "0";
+        } else {
+          input.value = "0";
+        }
+      });
+      customerInput.value = "";
+      noteInput.value = "";
+      updateTotals();
+      resultWrap.classList.remove('show');
+    }
+
+    // 產生訂單用資料
+    function collectOrderData() {
+      const rows = Array.from(document.querySelectorAll('#product-table tr'));
+      const items = [];
+      rows.forEach(tr => {
+        const name = tr.querySelector('td:nth-child(1)').textContent.trim();
+        const price = parseFloat(tr.querySelector('td:nth-child(2)').textContent.trim());
+        const qty = parseInt(tr.querySelector('input').value || '0', 10);
+        if (qty > 0) {
+          items.push({ name, price, qty, sub: qty * price });
+        }
+      });
+      const grand = parseInt(grandEl.textContent.replace(/,/g,''), 10) || 0;
+      const prev = parseInt(previousTotalInput.value || '0', 10) || 0;
+      const final = grand + prev;
+      const gifts = calcGifts(final);
+      return { items, grand, prev, final, gifts };
+    }
+
+    function fillOrderCard(data) {
+      // meta
+      metaDate.textContent = currentDateStr();
+      metaCustomer.textContent = customerInput.value || '—';
+      metaNote.textContent = noteInput.value || '—';
+      // items
+      orderItems.innerHTML = '';
+      if (data.items.length === 0) {
+        orderItems.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#666;">尚未選購任何品項</td></tr>';
+      } else {
+        data.items.forEach(it => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td style="text-align:left">${it.name}</td><td>${it.qty}</td><td>${it.price}</td><td>${it.sub}</td>`;
+          orderItems.appendChild(tr);
+        });
+      }
+      sumGrand.textContent = data.grand + ' 元';
+      sumPrev.textContent = data.prev + ' 元';
+      sumFinal.textContent = data.final + ' 元';
+      sumGift.textContent = data.gifts > 0 ? `滿額贈品：白花油 #1 × ${data.gifts} 支` : "滿額贈品：無";
+    }
+
+    function buildTextMessage(data) {
+      const title = '【訂單確認單】';
+      const lines = [];
+      lines.push(`${title}`);
+      lines.push(`日期：${currentDateStr()}`);
+      lines.push(`客戶：${customerInput.value || '—'}`);
+      lines.push(`備註：${noteInput.value || '—'}`);
+      lines.push('———');
+      if (data.items.length === 0) {
+        lines.push('（尚未選購任何品項）');
+      } else {
+        data.items.forEach(it => {
+          lines.push(`${it.name} × ${it.qty}（$${it.price}）＝ $${it.sub}`);
+        });
+      }
+      lines.push('———');
+      lines.push(`本次總計：$${data.grand}`);
+      lines.push(`之前已出：$${data.prev}`);
+      lines.push(`加總金額：$${data.final}`);
+      lines.push(data.gifts > 0 ? `滿額贈：白花油 #1 × ${data.gifts} 支` : '滿額贈：無');
+      return lines.join('\n');
+    }
+
+    async function generateImage() {
+      const data = collectOrderData();
+      fillOrderCard(data);
+      // 讓 card 先渲染到最新
+      await new Promise(r => setTimeout(r, 50));
+      const canvas = await html2canvas(orderCard, { scale: 2, backgroundColor: '#ffffff' });
+      const dataUrl = canvas.toDataURL('image/png');
+      previewImg.src = dataUrl;
+      downloadLink.href = dataUrl;
+      resultMsg.textContent = '✅ 已生成訂單圖檔預覽';
+      resultWrap.classList.add('show');
+
+      // 更新 LINE 文字分享連結
+      const text = encodeURIComponent(buildTextMessage(data));
+      shareLineText.href = `https://line.me/R/msg/text/?${text}`;
+      textPreview.textContent = decodeURIComponent(text);
+      return await new Promise(res => canvas.toBlob(res));
+    }
+
+    async function shareImage() {
+      try {
+        const blob = await generateImage();
+        if (!navigator.canShare || !navigator.canShare({ files: [new File([blob], 'order.png', { type: 'image/png' })] })) {
+          alert('此瀏覽器不支援直接分享圖片，請先下載後再到 LINE 上傳圖片。');
+          return;
+        }
+        const file = new File([blob], 'order.png', { type: 'image/png' });
+        await navigator.share({
+          title: '訂單確認單',
+          text: '請協助建立訂單，謝謝！',
+          files: [file]
+        });
+      } catch (e) {
+        console.error(e);
+        alert('分享失敗，請改用下載圖檔後手動上傳。');
+      }
+    }
+
+    // 事件綁定
+    inputs.forEach(input => {
+      input.addEventListener('input', updateTotals);
+      input.addEventListener('focus', () => { if (input.value === "0") input.value = ""; });
+      input.addEventListener('blur', () => { if (input.value === "") input.value = "0"; });
+    });
+    previousTotalInput.addEventListener('input', updateTotals);
+    clearBtn.addEventListener('click', clearQuantities);
+    btnGenerate.addEventListener('click', generateImage);
+    btnShare.addEventListener('click', shareImage);
+    btnCopyText.addEventListener('click', async () => {
+      const data = collectOrderData();
+      const text = buildTextMessage(data);
+      try {
+        await navigator.clipboard.writeText(text);
+        alert('已複製文字版內容，可直接貼到 LINE。');
+      } catch {
+        // 失敗則顯示在下方
+        textPreview.textContent = text;
+        resultWrap.classList.add('show');
+        alert('無法自動複製，已在下方顯示，可手動全選複製。');
+      }
+    });
+
+    // 初始
+    updateTotals();
+  </script>
+</body>
+</html>
