@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>白花油活動（現金價）計算</title>
+  <style>
+    :root {
+      --border: #ccc;
+      --muted: #666;
+      --bg: #f8f8f8;
+      --accent: #0b72ff;
+      --gift: #0a7c2f;
+    }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif; padding: 10px; }
+    h2 { margin: 8px 0 14px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid var(--border); padding: 8px; text-align: center; }
+    th { background-color: #f4f4f4; }
+    input[type="number"] { width: 100px; padding: 6px 8px; font-size: 1rem; }
+    .top-controls { font-weight: 600; font-size: 1rem; margin-bottom: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .muted { color: var(--muted); font-weight: 500; }
+    .gift-box {
+      border: 1px dashed var(--gift);
+      background: #f3fbf5;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gift-line { font-weight: 700; color: var(--gift); }
+    .hint { font-size: 0.9rem; color: var(--muted); }
+
+    button { padding: 8px 12px; font-size: 1rem; cursor: pointer; width: fit-content; border-radius: 8px; border: 1px solid var(--border); background: white; }
+    button:hover { border-color: #999; }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead tr { display: none; }
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border);
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+      }
+      td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid var(--border);
+      }
+      td:last-child { border-bottom: none; }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 700;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .top-controls {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background-color: #fff;
+        border-top: 1px solid var(--border);
+        padding: 10px;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+        z-index: 1000;
+      }
+      body { padding-bottom: 190px; } /* 避免內容被底部固定區遮住 */
+    }
+  </style>
+</head>
+<body>
+  <h2>白花油活動（現金價）計算</h2>
+
+  <div class="top-controls">
+    <div>總計金額：<span id="grand-total">0</span> 元</div>
+    <div>
+      之前已出金額：
+      <input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"> 元
+      <span class="muted">（會併入本次一起評估滿額贈）</span>
+    </div>
+    <div>加總金額：<span id="final-total">0</span> 元</div>
+
+    <div class="gift-box">
+      <div class="gift-line" id="gift-info">滿額贈品：無</div>
+      <div class="hint" id="gift-hint">
+        規則：每 $7,000 贈白花油 #1 ×1；每 $21,000 贈白花油 #1 ×4。<br/>
+        計算方式：每 $21,000 計 4 支，剩餘金額再以每 $7,000 計 1 支。<br/>
+        例：$14,000 ⇒ 2 支、$29,000 ⇒ 5 支。
+      </div>
+      <div class="hint" id="next-tier">距離下一支還差：— 元</div>
+    </div>
+
+    <button id="clear-btn">清除數量</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>品名</th>
+        <th>現金價</th>
+        <th>數量</th>
+        <th>小計</th>
+      </tr>
+    </thead>
+    <tbody id="product-table">
+      <tr>
+        <td data-label="品名">白花油 #1</td><td data-label="現金價">240</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="240"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 #2</td><td data-label="現金價">154</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="154"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 #3</td><td data-label="現金價">89</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="89"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+      <tr>
+        <td data-label="品名">白花油 XL</td><td data-label="現金價">432</td>
+        <td data-label="數量"><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="432"></td>
+        <td class="subtotal" data-label="小計">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const inputs = document.querySelectorAll('input[type="number"]');
+    const previousTotalInput = document.getElementById('previous-total');
+    const grandEl = document.getElementById('grand-total');
+    const finalEl = document.getElementById('final-total');
+    const giftInfoEl = document.getElementById('gift-info');
+    const nextTierEl = document.getElementById('next-tier');
+    const clearBtn = document.getElementById('clear-btn');
+
+    // 計算滿額贈：每 21,000 計 4 支；餘數再以每 7,000 計 1 支
+    function calcGifts(total) {
+      const bigBlocks = Math.floor(total / 21000); // 每塊 21,000 -> 4 支
+      const remainder = total % 21000;
+      const smallBlocks = Math.floor(remainder / 7000); // 剩餘每 7,000 -> 1 支
+      return bigBlocks * 4 + smallBlocks;
+    }
+
+    // 距離下一支（下一個 7,000 門檻）的差額
+    function calcNextGap(total) {
+      const next7000 = (Math.floor(total / 7000) + 1) * 7000;
+      return Math.max(0, next7000 - total);
+    }
+
+    function formatCurrency(n) {
+      return (Math.max(0, Math.floor(n))).toString();
+    }
+
+    function updateTotals() {
+      let grandTotal = 0;
+      inputs.forEach(input => {
+        if (input.id !== "previous-total") {
+          const price = parseFloat(input.dataset.price);
+          const quantity = parseInt(input.value, 10) || 0;
+          const subtotal = price * quantity;
+          input.closest('tr').querySelector('.subtotal').textContent = formatCurrency(subtotal);
+          grandTotal += subtotal;
+        }
+      });
+
+      const previousTotal = parseFloat(previousTotalInput.value) || 0;
+      const finalTotal = grandTotal + previousTotal;
+
+      grandEl.textContent = formatCurrency(grandTotal);
+      finalEl.textContent = formatCurrency(finalTotal);
+
+      // 滿額贈計算
+      const gifts = calcGifts(finalTotal);
+      giftInfoEl.textContent = gifts > 0 ? `滿額贈品：白花油 #1 × ${gifts} 支` : "滿額贈品：無";
+
+      // 下一檔提示（以 $7,000 為一檔）
+      const gap = calcNextGap(finalTotal);
+      nextTierEl.textContent = `距離下一支還差：${formatCurrency(gap)} 元`;
+    }
+
+    function clearQuantities() {
+      inputs.forEach(input => {
+        if (input.id === "previous-total") {
+          input.value = "";
+        } else {
+          input.value = 0;
+        }
+      });
+      updateTotals();
+    }
+
+    // 綁定事件
+    inputs.forEach(input => {
+      input.addEventListener('input', updateTotals);
+      input.addEventListener('focus', () => { if (input.value === "0") input.value = ""; });
+      input.addEventListener('blur', () => { if (input.value === "") input.value = "0"; });
+    });
+    previousTotalInput.addEventListener('input', updateTotals);
+    clearBtn.addEventListener('click', clearQuantities);
+
+    // 初始
+    updateTotals();
+  </script>
+</body>
+</html>
