@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>白花油活動（現金價）計算＋訂單傳送</title>
+  <title>白花油活動計算（現金價）＋訂單生成</title>
   <style>
     :root {
       --border: #ccc;
@@ -54,11 +54,11 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-  <h2>白花油活動（現金價）計算</h2>
+  <h2>白花油活動計算（現金價）＋訂單生成</h2>
 
   <!-- 基本輸入 -->
   <div class="row">
-    <label>客戶名稱：<input type="text" id="customer" placeholder="例如：王小明藥局"></label>
+    <label>客戶名稱：<input type="text" id="customer" placeholder="例如：大里 昱昭"></label>
     <label>備註：<input type="text" id="note" placeholder="例如：急件／星期四到貨"></label>
     <label>之前已出金額：<input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"></label>
   </div>
