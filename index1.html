@@ -207,7 +207,7 @@
     const giftText = data.gifts>0 ? `滿額贈品：80/82ml × ${data.gifts} 支` : '滿額贈品：無';
     giftInfoEl.textContent = giftText;
     sumGift.textContent = giftText;
-    nextTierEl.textContent = `距離下一支還差：${Math.max(0,(Math.floor(data.final/7000)+1)*7000 - data.final)} 元`;
+    nextTierEl.textContent = `距離下一支還差：${Math.max(0,(Math.floor(data.final/4000)+1)*4000 - data.final)} 元`;
     metaDate.textContent = currentDateStr();
     metaCustomer.textContent = custInput.value || '—';
     metaNote.textContent = noteInput.value || '—';
