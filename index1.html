@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>白花油活動（現金價）計算＋訂單分享</title>
+  <title>安摩樂活動計算（現金價）＋訂單生成</title>
   <style>
     :root {
       --border: #ccc;
@@ -54,11 +54,11 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-  <h2>白花油活動（現金價）計算</h2>
+  <h2>安摩樂活動計算（現金價）＋訂單生成</h2>
 
   <!-- 基本輸入 -->
   <div class="row">
-    <label>客戶名稱：<input type="text" id="customer" placeholder="例如：王小明藥局"></label>
+    <label>客戶名稱：<input type="text" id="customer" placeholder="例如：大里 昱昭"></label>
     <label>備註：<input type="text" id="note" placeholder="例如：急件／星期四到貨"></label>
     <label>之前已出金額：<input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"></label>
   </div>
@@ -68,10 +68,11 @@
       <tr><th>品名</th><th>現金價</th><th>數量</th><th>小計</th></tr>
     </thead>
     <tbody id="product-table">
-      <tr><td>白花油 #1</td><td>240</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="240"></td><td class="subtotal">0</td></tr>
-      <tr><td>白花油 #2</td><td>154</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="154"></td><td class="subtotal">0</td></tr>
-      <tr><td>白花油 #3</td><td>89</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="89"></td><td class="subtotal">0</td></tr>
-      <tr><td>白花油 XL</td><td>432</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="432"></td><td class="subtotal">0</td></tr>
+      <tr><td>®小林清新安摩樂彎彎瓶(紅) 46ml</td><td>136</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="136"></td><td class="subtotal">0</td></tr>
+      <tr><td>®小林清新安摩樂彎彎瓶(紅) 80ml</td><td>216</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="216"></td><td class="subtotal">0</td></tr>
+      <tr><td>®小林清新安摩樂外用液劑(藍) 82ml</td><td>216</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="216"></td><td class="subtotal">0</td></tr>
+      <tr><td>小林安摩樂熱敷貼片-肩頸</td><td>72</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="72"></td><td class="subtotal">0</td></tr>
+      <tr><td>小林安摩樂熱敷貼片-腰背</td><td>72</td><td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="72"></td><td class="subtotal">0</td></tr>
     </tbody>
   </table>
 
@@ -132,16 +133,16 @@
   const metaCustomer = document.getElementById('meta-customer');
   const metaNote = document.getElementById('meta-note');
 
-  // 贈品規則：每 21,000 計 4 支；餘數再以每 7,000 計 1 支
+  // 贈品規則：每 12,000 計 4 支 80/82ml；餘數再以每 4,000 計 1 支 80/82ml
   function calcGifts(total){
-    const bigBlocks=Math.floor(total/21000);
-    const remainder=total%21000;
-    const smallBlocks=Math.floor(remainder/7000);
+    const bigBlocks=Math.floor(total/12000);
+    const remainder=total%12000;
+    const smallBlocks=Math.floor(remainder/4000);
     return bigBlocks*4+smallBlocks;
   }
   function calcNextGap(total){
-    const next7000=(Math.floor(total/7000)+1)*7000;
-    return Math.max(0,next7000-total);
+    const next7000=(Math.floor(total/4000)+1)*4000;
+    return Math.max(0,next4000-total);
   }
   function currentDateStr(){
     const d=new Date(); const p=n=>n.toString().padStart(2,'0');
@@ -160,7 +161,7 @@
     lines.push(`本次總計：$${data.grand}`);
     lines.push(`之前已出：$${data.prev}`);
     lines.push(`加總金額：$${data.final}`);
-    lines.push(data.gifts > 0 ? `滿額贈：白花油 #1 × ${data.gifts} 支` : '滿額贈：無');
+    lines.push(data.gifts > 0 ? `滿額贈：80/82ml × ${data.gifts} 支` : '滿額贈：無');
     return lines.join('\n');
   }
   function collectOrderData() {
@@ -203,7 +204,7 @@
     sumPrev.textContent = data.prev + ' 元';
     sumFinal.textContent = data.final + ' 元';
     grandEl.textContent = data.final;
-    const giftText = data.gifts>0 ? `滿額贈品：白花油 #1 × ${data.gifts} 支` : '滿額贈品：無';
+    const giftText = data.gifts>0 ? `滿額贈品：80/82ml × ${data.gifts} 支` : '滿額贈品：無';
     giftInfoEl.textContent = giftText;
     sumGift.textContent = giftText;
     nextTierEl.textContent = `距離下一支還差：${Math.max(0,(Math.floor(data.final/7000)+1)*7000 - data.final)} 元`;
