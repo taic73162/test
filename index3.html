@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>白花油活動計算機</title>
+  <style>
+    :root {
+      --border: #ccc;
+      --muted: #666;
+      --gift: #0a7c2f;
+      --card: #ffffff;
+      --accent: #0b72ff;
+      --warn: #b54708;
+      --warnbg:#fff7e6;
+    }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", sans-serif; padding: 10px; background:#fff; }
+    h2 { margin: 8px 0 14px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid var(--border); padding: 8px; text-align: center; }
+    th { background-color: #f4f4f4; }
+    input[type="number"], input[type="text"] { padding: 6px 8px; font-size: 1rem; }
+    input[type="number"] { width: 90px; }
+    .row { display:flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0; }
+    .order-card {
+      width: 880px; background: var(--card); color:#000; border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px; box-shadow: 0 6px 24px rgba(0,0,0,.06);
+    }
+    .order-head { display:flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .order-title { font-size: 20px; font-weight: 800; }
+    .order-meta { font-size: 14px; color: #333; display:flex; gap: 16px; flex-wrap: wrap; }
+    .order-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 14px; table-layout: fixed; }
+    .order-table th, .order-table td { border: 1px solid #ddd; padding: 6px 8px; text-align: right; word-wrap: break-word; }
+    .order-table th:first-child, .order-table td:first-child { text-align: left; }
+    .order-summary { margin-top: 10px; display: grid; grid-template-columns: 1fr auto; gap: 6px; font-size: 14px; }
+    .order-summary .label { color: #333; }
+    .order-summary .value { font-weight: 800; }
+    .order-gift { margin-top: 8px; font-weight: 700; color: var(--gift); }
+    .divider { height: 1px; background:#e8e8e8; margin: 8px 0; }
+    button { padding: 10px 12px; font-size: 1rem; cursor: pointer; border-radius: 10px; border: 1px solid var(--border); background: white; }
+    button.primary { background: var(--accent); color:#fff; border-color: var(--accent); }
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background:#fff; border-top:1px solid var(--border);
+      padding:10px; box-shadow:0 -2px 5px rgba(0,0,0,0.08); z-index:1000;
+      display:flex; flex-direction:column; gap:8px;
+    }
+    .sticky-row { display:flex; justify-content:space-between; align-items:center; font-size: 14px; }
+    .sticky-actions { display:flex; gap:8px; flex-wrap: wrap; }
+    .gift-em { color: var(--gift); font-weight: 800; }
+    
+    
+    @media (max-width: 600px) {
+      .order-card { width: 100%; padding: 12px; }
+      body { padding-bottom: 190px; }
+    }
+
+    /* === 參照 25USTC.html 的圖片預覽元件 === */
+    #product-preview {
+      position: fixed; pointer-events: none; z-index: 9999; display: none;
+      background: #fff; border: 1px solid #ddd; border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.14); padding: 10px;
+      max-width: 280px; max-height: 320px;
+    }
+    #product-preview img { width: 100%; height: auto; object-fit: contain; display:block; }
+    #mobile-sheet {
+      position: fixed; left: 0; right:0; bottom: -100%; z-index: 10000; 
+      background: #fff; border-radius: 16px 16px 0 0; box-shadow: 0 -12px 30px rgba(0,0,0,.18);
+      transition: bottom .25s ease; padding: 12px 12px 18px; max-height: 75vh; overflow: auto;
+    }
+    #mobile-sheet.open { bottom: 0; }
+    #mobile-sheet img { width: 100%; height: auto; object-fit: contain; display:block; }
+    #mobile-sheet .handle { width:48px; height:5px; border-radius: 5px; background:#ddd; margin: 6px auto 10px; }
+
+    @media (max-width: 768px) {
+      #product-preview { display: none !important; }
+      #mobile-sheet {
+        max-height: 80vh;
+        padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+      }
+      #mobile-sheet img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: min(92vw, 520px);
+        max-height: 60vh;
+        object-fit: contain;
+        margin: 6px auto 8px;
+      }
+    }
+
+    /* 在產品名稱旁放一個縮圖圖示（有圖才顯示） */
+    .thumb-dot {
+      display: none;
+      margin-left: 6px;
+      font-size: 12px;
+      color: #888;
+      cursor: zoom-in;
+      user-select: none;
+    }
+    tr.has-image .thumb-dot { display: inline; }
+    td.name-cell { text-align: left; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <h2>白花油活動計算機</h2>
+<!-- 基本輸入 -->
+  <div class="row">
+    <label>客戶名稱：<input type="text" id="customer" placeholder="例如：大里 昱昭"></label>
+    <label>備註：<input type="text" id="note" placeholder="例如：急！／星期四到貨"></label>
+    <label>之前已出金額：<input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"></label>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>品名</th><th>現金價</th><th>數量</th><th>小計</th></tr>
+    </thead>
+    <tbody id="product-table">
+      <tr>
+        <td class="name-cell">白花油 #1</td>
+        <td>240</td>
+        <td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="240"></td>
+        <td class="subtotal">0</td>
+      </tr>
+      <tr>
+        <td class="name-cell">白花油 #2</td>
+        <td>154</td>
+        <td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="154"></td>
+        <td class="subtotal">0</td>
+      </tr>
+      <tr>
+        <td class="name-cell">白花油 #3</td>
+        <td>89</td>
+        <td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="89"></td>
+        <td class="subtotal">0</td>
+      </tr>
+      <tr>
+        <td class="name-cell">白花油 XL</td>
+        <td>432</td>
+        <td><input type="number" min="0" value="0" inputmode="numeric" pattern="[0-9]*" data-price="432"></td>
+        <td class="subtotal">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 訂單卡片（輸出圖檔用） -->
+  <div id="order-card" class="order-card" style="margin-top:14px;">
+    <div class="order-head">
+      <div class="order-title">訂單確認單</div>
+      <div class="order-meta"><span id="meta-date"></span></div>
+    </div>
+    <div class="order-meta">
+      <div>客戶：<span id="meta-customer">—</span></div>
+      <div>備註：<span id="meta-note">—</span></div>
+    </div>
+    <div class="divider"></div>
+    <table class="order-table">
+      <thead><tr><th>品名</th><th>數量</th><th>單價</th><th>小計</th></tr></thead>
+      <tbody id="order-items"><tr><td colspan="4" style="text-align:center;color:#666;">尚未選購任何品項</td></tr></tbody>
+    </table>
+    <div class="order-summary">
+      <div class="label">本次總計：</div><div class="value" id="sum-grand">0 元</div>
+      <div class="label">之前已出：</div><div class="value" id="sum-prev">0 元</div>
+      <div class="label">加總金額：</div><div class="value" id="sum-final">0 元</div>
+    </div>
+    <div class="order-gift" id="sum-gift">滿額贈品：無</div>
+  </div>
+
+  <!-- 手機底部固定資訊與操作 -->
+  <div class="sticky-bar">
+    <div class="sticky-row">總計金額（含已出）：<span id="grand-total">0</span> 元</div>
+    <div class="sticky-row"><span class="gift-em" id="gift-info">滿額贈品：無</span></div>
+    <div class="sticky-row" id="next-tier">距離下一支還差：— 元</div>
+    <div class="sticky-actions">
+      <button id="clear-btn">重新輸入</button>
+      <button id="share-all-btn" class="primary">生成訂單並分享</button>
+      <a id="share-line-text" target="_blank" rel="noopener"><button>用 LINE 傳文字</button></a>
+</div>
+  </div>
+
+  <!-- 產品圖片預覽（參照 25USTC.html） -->
+  <div id="product-preview" aria-hidden="true">
+    <img id="product-preview-img" alt="商品預覽" loading="lazy" />
+  </div>
+  <div id="mobile-sheet" aria-hidden="true">
+    <div class="handle"></div>
+    <img id="mobile-sheet-img" alt="商品預覽" loading="lazy" />
+  </div>
+
+<script>
+  const inputs = document.querySelectorAll('input[type="number"][data-price]');
+  const prevInput = document.getElementById('previous-total');
+  const custInput = document.getElementById('customer');
+  const noteInput = document.getElementById('note');
+
+  const grandEl = document.getElementById('grand-total');
+  const giftInfoEl = document.getElementById('gift-info');
+  const nextTierEl = document.getElementById('next-tier');
+  const clearBtn = document.getElementById('clear-btn');
+  const shareAllBtn = document.getElementById('share-all-btn');
+  const shareLineText = document.getElementById('share-line-text');
+  const orderItems = document.getElementById('order-items');
+  const sumGrand = document.getElementById('sum-grand');
+  const sumPrev = document.getElementById('sum-prev');
+  const sumFinal = document.getElementById('sum-final');
+  const sumGift = document.getElementById('sum-gift');
+  const metaDate = document.getElementById('meta-date');
+  const metaCustomer = document.getElementById('meta-customer');
+  const metaNote = document.getElementById('meta-note');
+
+  // === 圖片預覽相關 ===
+  const preview = document.getElementById('product-preview');
+  const previewImg = document.getElementById('product-preview-img');
+  const sheet = document.getElementById('mobile-sheet');
+  const sheetImg = document.getElementById('mobile-sheet-img');
+  const PADDING = 16;
+  const isDesktop = () => window.matchMedia('(min-width: 769px)').matches;
+
+  const JSON_URLS = ['productImages.json', 'productImages_local.json']; // 支援兩種檔名
+  let imageMap = {};
+
+  function normalizeName(s){
+    return (s || '').replace(/\\u00A0/g, ' ').replace(/\\s+/g, ' ').trim();
+  }
+
+  async function loadMap(){
+    for(const url of JSON_URLS){
+      try{
+        const r = await fetch(url, {cache:'no-cache'});
+        if(r.ok){
+          imageMap = await r.json();
+          console.log('[預覽對照表載入成功]', url);
+          return;
+        }
+      }catch(e){ /* try next */ }
+    }
+    console.warn('productImages 對照表載入失敗，名稱對照將無法顯示圖片');
+  }
+
+  function getImgSrcFromName(name){
+    const productName = normalizeName(name);
+    let src = imageMap[productName];
+    if(!src){
+      const loose = productName.replace(/[®™©]/g, '').trim();
+      src = imageMap[loose];
+    }
+    return src || null;
+  }
+
+  function movePreview(e){
+    const vw = innerWidth, vh = innerHeight;
+    const w = preview.offsetWidth || 300, h = preview.offsetHeight || 200;
+    let x = e.clientX + 18, y = e.clientY + 18;
+    if (x + w + PADDING > vw) x = e.clientX - w - 18;
+    if (y + h + PADDING > vh) y = e.clientY - h - 18;
+    preview.style.left = Math.max(PADDING, x) + 'px';
+    preview.style.top  = Math.max(PADDING, y) + 'px';
+  }
+  function showPreview(src){
+    previewImg.src = src;
+    preview.style.display = 'block';
+  }
+  function hidePreview(){
+    preview.style.display = 'none';
+    previewImg.removeAttribute('src');
+  }
+  function openSheet(src){
+    sheetImg.src = src;
+    sheet.classList.add('open');
+    sheet.setAttribute('aria-hidden','false');
+  }
+  function closeSheet(){
+    sheet.classList.remove('open');
+    sheet.setAttribute('aria-hidden','true');
+    sheetImg.removeAttribute('src');
+  }
+  sheet.addEventListener('click', ()=>{ closeSheet(); });
+
+  // 初始化資料列的「有圖」標示
+  function markRowsHasImage(){
+    document.querySelectorAll('#product-table tr').forEach(tr => {
+      const nameCell = tr.querySelector('.name-cell');
+      if(!nameCell) return;
+      const name = nameCell.childNodes[0]?.textContent || nameCell.textContent;
+      const src = getImgSrcFromName(name);
+      if(src){
+        tr.classList.add('has-image');
+        nameCell.querySelector('.thumb-dot')?.setAttribute('data-src', src);
+      } else {
+        tr.classList.remove('has-image');
+      }
+    });
+  }
+
+  function bindPreviewEvents(){
+    // 桌機：滑過整列顯示預覽
+    document.addEventListener('mouseover', (e) => {
+      if (!isDesktop()) return;
+      const nameCell = e.target.closest('#product-table td.name-cell');
+      if (!nameCell) return;
+      const name = nameCell.childNodes[0]?.textContent || nameCell.textContent;
+      const src = getImgSrcFromName(name);
+      if (!src) return;
+      showPreview(src);
+      movePreview(e);
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!isDesktop()) return;
+      if (preview.style.display === 'block') movePreview(e);
+    });
+    document.addEventListener('mouseout', (e) => {
+      if (!isDesktop()) return;
+      if (e.target.closest('#product-table td.name-cell')) hidePreview();
+    });
+
+    // 手機：點擊縮圖圖示或名稱打開 bottom sheet
+    document.addEventListener('click', (e) => {
+      if (isDesktop()) return;
+      const dot = e.target.closest('.thumb-dot');
+      const nameCell = e.target.closest('.name-cell');
+      let src = null;
+      if (dot) {
+        src = dot.getAttribute('data-src');
+      } else if (nameCell) {
+        const name = nameCell.childNodes[0]?.textContent || nameCell.textContent;
+        src = getImgSrcFromName(name);
+      }
+      if (src) openSheet(src);
+    });
+  }
+
+  // === 訂單/金額計算 ===
+  // 贈品規則：每 21,000 計 4 支；餘數再以每 7,000 計 1 支
+  function calcGifts(total){
+    const bigBlocks=Math.floor(total/21000);
+    const remainder=total%21000;
+    const smallBlocks=Math.floor(remainder/7000);
+    return bigBlocks*4+smallBlocks;
+  }
+  function currentDateStr(){
+    const d=new Date(); const p=n=>n.toString().padStart(2,'0');
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+  }
+  function buildTextMessage(data) {
+    const lines = [];
+    lines.push(`【訂單確認單】`);
+    lines.push(`日期：${currentDateStr()}`);
+    lines.push(`客戶：${custInput.value || '—'}`);
+    lines.push(`備註：${noteInput.value || '—'}`);
+    lines.push('———');
+    if (data.items.length === 0) lines.push('（尚未選購任何品項）');
+    data.items.forEach(it => lines.push(`${it.name} × ${it.qty}（$${it.price}）＝ $${it.sub}`));
+    lines.push('———');
+    lines.push(`本次總計：$${data.grand}`);
+    lines.push(`之前已出：$${data.prev}`);
+    lines.push(`加總金額：$${data.final}`);
+    lines.push(data.gifts > 0 ? `滿額贈：白花油 #1 × ${data.gifts} 支` : '滿額贈：無');
+    return lines.join('\n');
+  }
+  function collectOrderData() {
+    const rows = Array.from(document.querySelectorAll('#product-table tr'));
+    const items = [];
+    rows.forEach(tr => {
+      const name = tr.querySelector('.name-cell').childNodes[0]?.textContent.trim() || tr.querySelector('.name-cell').textContent.trim();
+      const price = parseFloat(tr.querySelector('td:nth-child(2)').textContent.trim());
+      const qty = parseInt(tr.querySelector('input').value || '0', 10);
+      if (qty > 0) items.push({ name, price, qty, sub: qty * price });
+    });
+    const grand = items.reduce((s, it) => s + it.sub, 0);
+    const prev = parseInt(prevInput.value || '0', 10) || 0;
+    const final = grand + prev;
+    const gifts = calcGifts(final);
+    return { items, grand, prev, final, gifts };
+  }
+  function updateTotals(){
+    const data = collectOrderData();
+    // 更新清單
+    orderItems.innerHTML = '';
+    if (data.items.length === 0) {
+      orderItems.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#666;">尚未選購任何品項</td></tr>';
+    } else {
+      data.items.forEach(it => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td style="text-align:left">${it.name}</td><td>${it.qty}</td><td>${it.price}</td><td>${it.sub}</td>`;
+        orderItems.appendChild(tr);
+      });
+    }
+    // 更新表格小計
+    document.querySelectorAll('#product-table tr').forEach((tr,i)=>{
+      const input = tr.querySelector('input');
+      const price = parseFloat(input.dataset.price);
+      const qty = parseInt(input.value || '0',10) || 0;
+      tr.querySelector('.subtotal').textContent = price * qty;
+    });
+    // 更新金額/贈品/底部顯示
+    sumGrand.textContent = data.grand + ' 元';
+    sumPrev.textContent = data.prev + ' 元';
+    sumFinal.textContent = data.final + ' 元';
+    grandEl.textContent = data.final;
+    const giftText = data.gifts>0 ? `滿額贈品：白花油 #1 × ${data.gifts} 支` : '滿額贈品：無';
+    giftInfoEl.textContent = giftText;
+    sumGift.textContent = giftText;
+    nextTierEl.textContent = `距離下一支還差：${Math.max(0,(Math.floor(data.final/7000)+1)*7000 - data.final)} 元`;
+    metaDate.textContent = currentDateStr();
+    metaCustomer.textContent = custInput.value || '—';
+    metaNote.textContent = noteInput.value || '—';
+    // 更新 LINE 文字分享連結
+    shareLineText.href = 'https://line.me/R/msg/text/?' + encodeURIComponent(buildTextMessage(data));
+  }
+  // 自動清零：focus 清 0、blur 空白補 0
+  function attachAutoClearZero(input){
+    input.addEventListener('focus', ()=>{ if(input.value === '0') input.value = ''; });
+    input.addEventListener('blur', ()=>{ if(input.value === '') input.value = '0'; });
+    input.addEventListener('input', updateTotals);
+  }
+  document.querySelectorAll('input[type="number"][data-price]').forEach(attachAutoClearZero);
+  attachAutoClearZero(prevInput);
+  custInput.addEventListener('input', updateTotals);
+  noteInput.addEventListener('input', updateTotals);
+
+  async function renderCardToBlob(){
+    await new Promise(r=>setTimeout(r,40));
+    const canvas = await html2canvas(document.getElementById('order-card'), {scale:2, backgroundColor:'#fff', useCORS:true});
+    return await new Promise(res=>canvas.toBlob(res, 'image/png', 0.95));
+  }
+
+  async function shareAll(){
+    updateTotals();
+    const blob = await renderCardToBlob();
+    const file = new File([blob], 'order.png', {type:'image/png'});
+    const data = collectOrderData();
+    const shareData = { title:'訂單確認單', text: buildTextMessage(data), files:[file] };
+    // 1) 先嘗試 Web Share with files（Android Chrome 89+ & HTTPS）
+    if ((location.protocol === 'https:' || location.hostname === 'localhost') && navigator.canShare && navigator.canShare({ files:[file] })) {
+      try { await navigator.share(shareData); return; }
+      catch (e) { /* 使用者取消或失敗 */ }
+    }
+    // 2) 備援 A：下載到「下載」資料夾
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'order.png';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    // 3) 備援 B（Android 友善）：開新分頁顯示圖片，長按「儲存圖片」可進相簿
+    if (/Android/i.test(navigator.userAgent || '')) {
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+      alert('已為你下載圖檔，若未出現在相簿，請切到新分頁長按圖片「儲存圖片」，再到 LINE 以圖片分享。');
+    } else {
+      alert('已為你下載圖檔，可到 LINE/Email 手動附加圖片分享。');
+    }
+  }
+
+  clearBtn.addEventListener('click', ()=>{
+    document.querySelectorAll('input[type="number"][data-price]').forEach(i=>i.value='0');
+    prevInput.value='0'; custInput.value=''; noteInput.value='';
+    updateTotals();
+  });
+  shareAllBtn.addEventListener('click', shareAll);
+  // 啟動：載入圖片對照表 → 標示有圖列 → 綁定事件
+  (async function init(){
+    await loadMap();
+    markRowsHasImage();
+    bindPreviewEvents();
+    updateTotals();
+  })();
+</script>
+
+</body>
+</html>
