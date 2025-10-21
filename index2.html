@@ -276,7 +276,8 @@
     sheetImg.removeAttribute('src');
   }
   sheet.addEventListener('click', ()=>{ closeSheet(); });
-// 初始化資料列的「有圖」標示
+
+  // 初始化資料列的「有圖」標示
   function markRowsHasImage(){
     document.querySelectorAll('#product-table tr').forEach(tr => {
       const nameCell = tr.querySelector('.name-cell');
@@ -296,7 +297,7 @@
     // 桌機：滑過整列顯示預覽
     document.addEventListener('mouseover', (e) => {
       if (!isDesktop()) return;
-      const nameCell = e.target.closest('#product-table tr.has-image .name-cell');
+      const nameCell = e.target.closest('#product-table td.name-cell');
       if (!nameCell) return;
       const name = nameCell.childNodes[0]?.textContent || nameCell.textContent;
       const src = getImgSrcFromName(name);
@@ -310,7 +311,7 @@
     });
     document.addEventListener('mouseout', (e) => {
       if (!isDesktop()) return;
-      if (e.target.closest('#product-table tr .name-cell')) hidePreview();
+      if (e.target.closest('#product-table td.name-cell')) hidePreview();
     });
 
     // 手機：點擊縮圖圖示或名稱打開 bottom sheet
@@ -562,7 +563,7 @@ td.name-cell{cursor:pointer;text-align:left}
   }
 
   function findNameCell(el){
-    return el.closest && el.closest('#product-table tr')?.querySelector('.name-cell');
+    return el.closest && el.closest('#product-table td.name-cell');
   }
 
   // Add .name-cell to first column if missing
@@ -587,7 +588,7 @@ td.name-cell{cursor:pointer;text-align:left}
   });
   document.addEventListener('mouseout', (e)=>{
     if (!isDesktop()) return;
-    if (e.target.closest && e.target.closest('#product-table tr')) hidePreview();
+    if (e.target.closest && e.target.closest('#product-table td.name-cell')) hidePreview();
   });
 
   // Mobile/desktop click opens modal
