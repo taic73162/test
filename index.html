@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>白花油活動計算機</title>
+  <title>杜蕾斯活動計算機</title>
   <style>
     :root {
       --border: #ccc;
@@ -104,12 +104,11 @@
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
-  <h2>白花油活動計算機</h2>
+  <h2>杜蕾斯活動計算機</h2>
 <!-- 基本輸入 -->
   <div class="row">
     <label>客戶名稱：<input type="text" id="customer" placeholder="例如：大里 昱昭"></label>
     <label>備註：<input type="text" id="note" placeholder="例如：急！／星期四到貨"></label>
-    <label>之前已出金額：<input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"></label>
     <label>點擊產品品名會顯示圖片，點擊圖片會收回</label>
   </div>
 
@@ -161,8 +160,6 @@
       <tbody id="order-items"><tr><td colspan="4" style="text-align:center;color:#666;">尚未選購任何品項</td></tr></tbody>
     </table>
     <div class="order-summary">
-      <div class="label">本次總計：</div><div class="value" id="sum-grand">0 元</div>
-      <div class="label">之前已出：</div><div class="value" id="sum-prev">0 元</div>
       <div class="label">加總金額：</div><div class="value" id="sum-final">0 元</div>
     </div>
     <div class="order-gift" id="sum-gift">滿額贈品：無</div>
@@ -353,8 +350,6 @@
     if (data.items.length === 0) lines.push('（尚未選購任何品項）');
     data.items.forEach(it => lines.push(`${it.name} × ${it.qty}（$${it.price}）＝ $${it.sub}`));
     lines.push('———');
-    lines.push(`本次總計：$${data.grand}`);
-    lines.push(`之前已出：$${data.prev}`);
     lines.push(`加總金額：$${data.final}`);
     lines.push(data.gifts > 0 ? `滿額贈：白花油 #1 × ${data.gifts} 支` : '滿額贈：無');
     return lines.join('\n');
