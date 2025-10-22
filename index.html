@@ -110,6 +110,7 @@
     <label>客戶名稱：<input type="text" id="customer" placeholder="例如：大里 昱昭"></label>
     <label>備註：<input type="text" id="note" placeholder="例如：急！／星期四到貨"></label>
     <label>之前已出金額：<input type="number" id="previous-total" value="0" min="0" inputmode="numeric" pattern="[0-9]*"></label>
+    <label>點擊產品品名會顯示圖片，點擊圖片會收回</label>
   </div>
 
   <table>
@@ -275,9 +276,7 @@
     sheet.setAttribute('aria-hidden','true');
     sheetImg.removeAttribute('src');
   }
-  sheet.addEventListener('click', (e)=>{
-    if(e.target === sheet) closeSheet();
-  });
+  sheet.addEventListener('click', ()=>{ closeSheet(); });
 
   // 初始化資料列的「有圖」標示
   function markRowsHasImage(){
@@ -299,10 +298,10 @@
     // 桌機：滑過整列顯示預覽
     document.addEventListener('mouseover', (e) => {
       if (!isDesktop()) return;
-      const tr = e.target.closest('#product-table tr.has-image');
-      if (!tr) return;
-      const dot = tr.querySelector('.thumb-dot');
-      const src = dot?.getAttribute('data-src');
+      const nameCell = e.target.closest('#product-table td.name-cell');
+      if (!nameCell) return;
+      const name = nameCell.childNodes[0]?.textContent || nameCell.textContent;
+      const src = getImgSrcFromName(name);
       if (!src) return;
       showPreview(src);
       movePreview(e);
@@ -313,7 +312,7 @@
     });
     document.addEventListener('mouseout', (e) => {
       if (!isDesktop()) return;
-      if (e.target.closest('#product-table tr')) hidePreview();
+      if (e.target.closest('#product-table td.name-cell')) hidePreview();
     });
 
     // 手機：點擊縮圖圖示或名稱打開 bottom sheet
@@ -467,5 +466,6 @@
     updateTotals();
   })();
 </script>
+
 </body>
 </html>
