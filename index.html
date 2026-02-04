@@ -80,16 +80,33 @@
         </ul>
     </div>
 
-    <script>
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            if (password === '25081') {
-                document.getElementById('passwordPrompt').style.display = 'none';
-                document.getElementById('content').style.display = 'block';
-            } else {
-                alert('密碼錯誤，請再試一次。');
-            }
+<script>
+    async function checkPassword() {
+        const password = document.getElementById('passwordInput').value;
+        const msgElement = document.getElementById('errorMsg');        
+        const correctHash = "e80b5017098950fc58aad83c8c14978e22872e16fa551239719323f4d2f07474";
+        const encoder = new TextEncoder();
+        const data = encoder.encode(password);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const inputHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        if (inputHash === correctHash) {
+            // 密碼正確
+            document.getElementById('passwordPrompt').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        } else {
+            // 密碼錯誤
+            alert('密碼錯誤，請再試一次。');
+            // 或使用 document.getElementById('passwordInput').value = ''; 清空
         }
-    </script>
+    }
+    
+    document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            checkPassword();
+        }
+    });
+</script>
 </body>
 </html>
