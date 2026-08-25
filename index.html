@@ -32,7 +32,7 @@
   </style>
 </head>
 <body>
-  <h1>產品退換資訊查詢</h1>
+  <h1>產品退貨輔助系統</h1>
 
   <!-- 功能 2: 最頂部顯示分界日期 -->
   <div class="info-box" id="boundaryDates">
@@ -41,7 +41,7 @@
 
   <!-- 功能 1: 產品末四碼搜尋區塊 (讀取產品表.xlsx) -->
   <div class="search-section">
-    <h2>🔍 Excel 末四碼精確查詢</h2>
+    <h2>🔍 查詢產品退貨標準</h2> 
     <input type="text" id="codeSearchBox" placeholder="請輸入產品末四碼 (例如: 7128)..." maxlength="4" />
     <div id="excelLoadingMsg" style="color: #666; font-size: 14px; margin-bottom: 10px;">Excel 檔案載入中...</div>
     <table>
@@ -61,7 +61,7 @@
 
   <!-- 原有功能: 綜合條件查詢 (讀取 product_returns.json) -->
   <div class="search-section">
-    <h2>📋 JSON 綜合條件查詢</h2>
+    <h2>📋 全產品退貨條件表</h2>
     <input type="text" id="searchBox" placeholder="輸入產品名稱、廠商或條件..." />
     <table>
       <thead>
@@ -105,14 +105,14 @@
       document.getElementById('boundaryDates').innerHTML = `
         <h2>不良原因代碼判讀</h2>
         <ul>
-          <li>2400 過期（<90天）：效期於 <b>${formatDate(d89)}</b> 之前</li>
-          <li>2401 近效 (90-360天)：效期於 <b>${formatDate(d90)}</b> 與 <b>${formatDate(d365)}</b> 之間</li>
-          <li>2402 外表破損</li>
-          <li>2403 訂單下錯/取消</li>
-          <li>2404 廠商回收不再販賣</li>
-          <li>2405 交換貨</li>
-          <li>2406 轉其他家</li>
-          <li>2407 無溫控之藥品</li>
+          <li><b>2400 過期</b>（<90天）：效期於 <b>${formatDate(d89)}</b> 之前</li>
+          <li><b>2401 近效</b> (90-360天)：效期於 <b>${formatDate(d90)}</b> 與 <b>${formatDate(d365)}</b> 之間</li>
+          <li><b>2402 外表破損</b></li>
+          <li><b>2403 訂單下錯/取消</b></li>
+          <li><b>2404 廠商回收不再販賣</b></li>
+          <li><b>2405 交換貨</b></li>
+          <li><b>2406 轉其他家</b></li>
+          <li><b>2407 無溫控之藥品</b></li>
         </ul>
       `;
     }
