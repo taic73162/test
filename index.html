@@ -14,7 +14,8 @@
     /* 資訊區塊與搜尋區塊樣式 */
     .info-box { background: #e6f7ff; border: 1px solid #91d5ff; padding: 15px 20px; margin-bottom: 20px; border-radius: 8px; }
     .info-box h2 { color: #0050b3; margin-top: 0; margin-bottom: 10px; }
-    .info-box ul { margin: 0; padding-left: 20px; line-height: 1.8; font-size: 15px; }
+    .info-box ul { margin: 0; padding-left: 0; line-height: 1.8; font-size: 15px; list-style-type: none; }
+    .info-box ul li { margin-bottom: 4px; }
     .search-section { background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
     
     input { width: 100%; padding: 10px 12px; margin-bottom: 15px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
@@ -96,17 +97,23 @@
       const d89 = new Date(today);
       d89.setDate(today.getDate() + 89);
       
-      // 計算近效 (90~360天)
+      // 計算近效 (90~365天)
       const d90 = new Date(today);
       d90.setDate(today.getDate() + 90);
-      const d360 = new Date(today);
-      d360.setDate(today.getDate() + 360);
+      const d365 = new Date(today);
+      d365.setDate(today.getDate() + 365);
 
       document.getElementById('boundaryDates').innerHTML = `
-        <h2>📅 效期狀態分界參考 (今日日期: ${formatDate(today)})</h2>
+        <h2>不良原因代碼判讀</h2>
         <ul>
-          <li><strong>過期商品（＜90天，即89天內）：</strong> 效期於 <b>${formatDate(d89)}</b> (含) 之前</li>
-          <li><strong>近效商品（90-360天）：</strong> 效期介於 <b>${formatDate(d90)}</b> 至 <b>${formatDate(d360)}</b> 之間</li>
+          <li>2400 過期（<90天）：效期於 <b>${formatDate(d89)}</b> 之前</li>
+          <li>2401 近效 (90-360天)：效期於 <b>${formatDate(d90)}</b> 與 <b>${formatDate(d365)}</b> 之間</li>
+          <li>2402 外表破損</li>
+          <li>2403 訂單下錯/取消</li>
+          <li>2404 廠商回收不再販賣</li>
+          <li>2405 交換貨</li>
+          <li>2406 轉其他家</li>
+          <li>2407 無溫控之藥品</li>
         </ul>
       `;
     }
